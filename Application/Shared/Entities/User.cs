@@ -1,14 +1,12 @@
 ﻿using Application.Shared.Models.Request;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
 using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.Shared.Entities
 {
-    public class User : IdentityUser<Guid>
+    public class User
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public long CPF { get; set; }
         public DateTime BirthDate { get; set; }

@@ -12,7 +12,6 @@ namespace Application.Shared.Context
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<OpeningHours> ServiceHours { get; set; }
         public DbSet<User> Users { get; set; }
-
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,12 +43,12 @@ namespace Application.Shared.Context
 
             _ = modelBuilder.Entity<User>()
                        .HasOne(u => u.Adress)
-                       .WithOne(u => u.User)
+                       .WithOne(us => us.User)
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<User>()
                        .HasOne(u => u.Login)
-                       .WithOne(u => u.User)
+                       .WithOne(us => us.User)
                        .OnDelete(DeleteBehavior.Cascade);
 
 

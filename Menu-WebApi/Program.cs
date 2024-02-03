@@ -1,11 +1,15 @@
 using Cardapio_webapi.Modules;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using System.Globalization;
 using System.Text.Json.Serialization;
+
+
+CultureInfo.CurrentCulture = new CultureInfo("en-US");
+CultureInfo.CurrentUICulture = new CultureInfo("en-US");
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureDataBase(builder.Configuration);
-builder.Services.ConfigureIdentity();
 builder.Services.AddUseCases(builder.Configuration);
 builder.Services.AddApiVersion();
 builder.Services.AddCors(opt =>
@@ -22,6 +26,7 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
