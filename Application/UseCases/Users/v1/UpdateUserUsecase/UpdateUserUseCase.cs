@@ -1,0 +1,25 @@
+﻿using Application.Shared.Services.Abstractions;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions;
+
+namespace Application.UseCases.Users.v1.UpdateUserUsecase
+{
+    public class UpdateUserUseCase(IUserRepository repository, IUnitOfWork unitOfWork) : IUpdateUserUseCase
+    {
+        private IOutputPort? _outputPort;
+
+        public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
+
+        public async Task ExecuteAsync(Guid userId, UpdateUserRequest request, CancellationToken cancellationToken)
+        {
+            var user = await repository.GetUser(userId, cancellationToken);
+            user!.Update(request);
+            user.Adress.Update(request.Adress);
+            user.Login.Update(request.Access);
+
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+            _outputPort!.UserUpdated();
+        }
+    }
+}
