@@ -1,10 +1,10 @@
 ﻿using Application.Shared.Models.Errors;
 using Application.Shared.Notifications;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cardapio_webapi.Controllers.Users.UpdateUserUseCase.v1
+namespace Menu_WebApi.Controllers.Users.UpdateUserUseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]

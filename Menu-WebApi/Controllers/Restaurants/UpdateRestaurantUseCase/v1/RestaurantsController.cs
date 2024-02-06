@@ -4,7 +4,7 @@ using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cardapio_webapi.Controllers.Restaurants.UpdateRestaurantUseCase.v1
+namespace Menu_WebApi.Controllers.Restaurants.UpdateRestaurantUseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]

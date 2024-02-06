@@ -13,7 +13,7 @@ namespace Application.Shared.Entities
         public string? Road { get; set; }
         public string? Neighborhood { get; set; }
         public string? City { get; set; }
-        public string? UF { get; set; }
+        public string? Uf { get; set; }
         public string? Complement { get; set; }
         public long Cep { get; set; }
         public int Number { get; set; }
@@ -35,7 +35,7 @@ namespace Application.Shared.Entities
             Road = request.Road;
             Neighborhood = request.Neighborhood;
             City = request.City;
-            UF = request.UF;
+            Uf = request.Uf;
             Complement = request.Complement;
             Cep = request.Cep;
             Number = request.Number;
@@ -46,7 +46,7 @@ namespace Application.Shared.Entities
             Road = request.Road ?? Road;
             Neighborhood = request.Neighborhood ?? Neighborhood;
             City = request.City ?? City;
-            UF = request.UF ?? UF;
+            Uf = request.Uf ?? Uf;
             Complement = request.Complement ?? Complement;
             Cep = request.Cep != 0 ? request.Cep : Cep;
             Number = request.Number != 0 ? request.Number : Number;

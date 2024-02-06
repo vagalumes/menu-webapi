@@ -3,7 +3,7 @@ using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
 using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cardapio_webapi.Controllers.Restaurants.GetRestaurantuseCase.v1
+namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]

@@ -20,7 +20,7 @@ namespace Application.UseCases.Users.v1.CreateUserUseCase
             var checkUser = repository.UserExists(request.CPF);
 
             if (checkUser)
-                notification.AddErrorMessage(nameof(request.CPF), "CPF já cadastrado");
+                notification.AddErrorMessage(nameof(request.CPF), "Cpf já cadastrado");
 
             if (notification.IsInvalid)
             {

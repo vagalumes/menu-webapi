@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Models.Request;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
 
 namespace Application.Shared.Entities
 {

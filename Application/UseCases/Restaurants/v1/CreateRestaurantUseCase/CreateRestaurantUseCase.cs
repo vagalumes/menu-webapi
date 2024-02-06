@@ -25,11 +25,11 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
             await repository.CreateRestaurant(restaurant, cancellationToken);
 
-            var restaurantDTO = new RestaurantDto(restaurant);
+            var restaurantDto = new RestaurantDto(restaurant);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return restaurantDTO;
+            return restaurantDto;
         }
     }
 }

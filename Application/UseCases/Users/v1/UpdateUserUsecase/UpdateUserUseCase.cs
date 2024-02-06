@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Services.Abstractions;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
-using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+using Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Users.v1.UpdateUserUsecase
+namespace Application.UseCases.Users.v1.UpdateUserUseCase
 {
     public class UpdateUserUseCase(IUserRepository repository, IUnitOfWork unitOfWork) : IUpdateUserUseCase
     {
@@ -14,7 +14,12 @@ namespace Application.UseCases.Users.v1.UpdateUserUsecase
         public async Task ExecuteAsync(Guid userId, UpdateUserRequest request, CancellationToken cancellationToken)
         {
             var user = await repository.GetUser(userId, cancellationToken);
-            user!.Update(request);
+            if (user is null)
+            {
+                _outputPort!.UserNotFound();
+                return;
+            }
+            user.Update(request);
             user.Adress.Update(request.Adress);
             user.Login.Update(request.Access);
 

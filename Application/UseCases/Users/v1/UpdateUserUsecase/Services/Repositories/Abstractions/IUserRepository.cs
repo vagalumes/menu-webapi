@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions
+namespace Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories.Abstractions
 {
     public interface IUserRepository
     {

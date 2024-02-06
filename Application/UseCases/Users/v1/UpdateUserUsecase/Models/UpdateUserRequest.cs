@@ -1,13 +1,12 @@
 ﻿using Application.Shared.Models.Request;
 
-namespace Application.UseCases.Users.v1.UpdateUserUsecase.Models
+namespace Application.UseCases.Users.v1.UpdateUserUseCase.Models
 {
     public class UpdateUserRequest
     {
-        public string Name { get; set; } = null!;
-        public long CPF { get; set; }
-        public AdressRequest Adress { get; set; } = null!;
-        public LoginRequest Access { get; set; } = null!;
+        public string? Name { get; set; }
+        public AdressRequest Adress { get; set; } = new AdressRequest();
+        public LoginRequest Access { get; set; } = new LoginRequest();
         public DateTime BirthDate { get; set; }
     }
 }

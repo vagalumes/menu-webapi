@@ -16,17 +16,19 @@ namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase
         {
             var restaurant = await repository.GetRestaurant(id, cancellationToken);
 
-            restaurant!.Update(request);
+            if (restaurant is null)
+            {
+                _outputPort!.RestaurantNotFound();
+                return;
+            }
 
+            restaurant.Update(request);
             restaurant.Adress.Update(request.AdressRequest);
-
             restaurant.Information.Update(request.InformationRequest);
-
             restaurant.Login.Update(request.LoginRequest);
-
             restaurant.Payments.Update(request.PaymentRequest);
 
-            if (request.ServiceHours != null && request.ServiceHours.Any())
+            if (request.ServiceHours.Count != 0)
                 restaurant.ServiceHours = request.ServiceHours.Select(oh => new OpeningHours(oh)).ToList();
 
             await unitOfWork.SaveChangesAsync(cancellationToken);

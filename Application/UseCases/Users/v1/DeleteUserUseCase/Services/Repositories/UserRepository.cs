@@ -5,16 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.UseCases.Users.v1.DeleteUserUseCase.Services.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository(AppDbContext appDbContext) : IUserRepository
     {
-        private readonly AppDbContext _context;
-
-        public UserRepository(AppDbContext appDbContext) => _context = appDbContext;
-
-        public void DeletedUser(User user) => _context.Remove(user);
+        public void DeletedUser(User user) => appDbContext.Remove(user);
 
         public async Task<User?> GetUser(Guid userId, CancellationToken cancellationToken) =>
-               await _context.Users.Include(u => u.Adress)
+               await appDbContext.Users.Include(u => u.Adress)
                                    .Include(u => u.Login)
                                    .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
     }

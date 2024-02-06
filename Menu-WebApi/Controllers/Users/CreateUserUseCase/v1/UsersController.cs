@@ -4,7 +4,7 @@ using Application.UseCases.Users.v1.CreateUserUseCase.Abstractions;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cardapio_webapi.Controllers.Users.CreateUserUseCase.v1
+namespace Menu_WebApi.Controllers.Users.CreateUserUseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]

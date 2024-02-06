@@ -200,7 +200,7 @@ namespace Application.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("CPF")
+                    b.Property<long>("Cpf")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")

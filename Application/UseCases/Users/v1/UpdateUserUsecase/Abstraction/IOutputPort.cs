@@ -1,4 +1,4 @@
-﻿namespace Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction
+﻿namespace Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction
 {
     public interface IOutputPort
     {

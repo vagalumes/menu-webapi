@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services.Repositories.Abstractions
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories.Abstractions
 {
     public interface IRestaurantRepository
     {

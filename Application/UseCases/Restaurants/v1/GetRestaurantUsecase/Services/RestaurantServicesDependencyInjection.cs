@@ -1,8 +1,8 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services.Repositories;
-using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services.Repositories.Abstractions;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories;
+using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services
 {
     public static class RestaurantServicesDependencyInjection
     {

@@ -1,12 +1,12 @@
 ﻿using Application.Shared.Notifications;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase;
-using Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
+using Application.UseCases.Restaurants.v1.GetRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase;
 using Application.UseCases.Users.v1.CreateUserUseCase;
 using Application.UseCases.Users.v1.DeleteUserUseCase;
 using Application.UseCases.Users.v1.GetUserUseCase;
-using Application.UseCases.Users.v1.UpdateUserUsecase;
+using Application.UseCases.Users.v1.UpdateUserUseCase;
 
 namespace Cardapio_webapi.Modules
 {
