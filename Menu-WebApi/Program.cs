@@ -1,7 +1,7 @@
-using Cardapio_webapi.Modules;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using WebApi.Modules;
 
 
 CultureInfo.CurrentCulture = new CultureInfo("en-US");
@@ -32,7 +32,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    _ = app.ConfigureSwaggerUI(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
+    _ = app.ConfigureSwaggerUi(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
 }
 
 app.UseHttpsRedirection();

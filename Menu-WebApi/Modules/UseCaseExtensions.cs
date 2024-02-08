@@ -8,7 +8,7 @@ using Application.UseCases.Users.v1.DeleteUserUseCase;
 using Application.UseCases.Users.v1.GetUserUseCase;
 using Application.UseCases.Users.v1.UpdateUserUseCase;
 
-namespace Cardapio_webapi.Modules
+namespace WebApi.Modules
 {
     public static class UseCaseExtensions
     {

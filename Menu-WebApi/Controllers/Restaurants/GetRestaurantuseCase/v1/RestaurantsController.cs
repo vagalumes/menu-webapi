@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Models.Errors;
-using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
+using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
+using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
@@ -15,7 +15,7 @@ namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
         [HttpGet("{restaurantId:guid}")]
         public async Task<IActionResult> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken)
         {
-            useCase.SetOutputport(this);
+            useCase.SetOutputPort(this);
             await useCase.ExecuteAsync(restaurantId, cancellationToken);
             return _viewModel!;
         }

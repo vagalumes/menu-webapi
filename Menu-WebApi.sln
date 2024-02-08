@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu-WebApi", "Menu-WebApi\Menu-WebApi.csproj", "{7F0E13EB-023B-47CA-ADEE-E8140A21C6C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "Menu-WebApi\WebApi.csproj", "{7F0E13EB-023B-47CA-ADEE-E8140A21C6C4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3696A636-1CD6-4EDC-A6C2-7A743958C850} = {3696A636-1CD6-4EDC-A6C2-7A743958C850}
 	EndProjectSection

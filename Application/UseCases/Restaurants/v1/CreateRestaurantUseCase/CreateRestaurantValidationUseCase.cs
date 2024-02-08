@@ -17,10 +17,10 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
         public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
-            var checkRestaurant = repository.RestaurantExists(request.CNPJ);
+            var checkRestaurant = repository.RestaurantExists(request.Cnpj);
 
             if (checkRestaurant)
-                notification.AddErrorMessage(nameof(request.CNPJ), "Restaurante já existente");
+                notification.AddErrorMessage(nameof(request.Cnpj), "Restaurante já existente");
 
             if (notification.IsInvalid)
             {

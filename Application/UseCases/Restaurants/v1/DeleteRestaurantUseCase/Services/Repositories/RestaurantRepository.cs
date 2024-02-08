@@ -16,7 +16,7 @@ namespace Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Services.R
 
         public async Task<Restaurant?> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken)
             => await _context.Restaurants
-                          .Include(r => r.Adress)
+                          .Include(r => r.Address)
                           .Include(r => r.Information)
                           .Include(r => r.Payments)
                           .FirstOrDefaultAsync(r => r.Id == restaurantId, cancellationToken);

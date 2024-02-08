@@ -21,7 +21,7 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
         private async Task<RestaurantDto> SaveRestaurant(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
-            var restaurant = new Restaurant(request, request.AdressRequest, request.InformationRequest!, request.LoginRequest, request.PaymentRequest, request.ServiceHours);
+            var restaurant = new Restaurant(request, request.AddressRequest, request.InformationRequest!, request.LoginRequest, request.PaymentRequest);
 
             await repository.CreateRestaurant(restaurant, cancellationToken);
 
