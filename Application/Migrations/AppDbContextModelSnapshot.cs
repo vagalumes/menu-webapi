@@ -22,7 +22,7 @@ namespace Application.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Application.Shared.Entities.Address", b =>
+            modelBuilder.Entity("Application.Shared.Entities.Adress", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace Application.Migrations
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("Address");
+                    b.ToTable("Adress");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.Information", b =>
@@ -179,7 +179,7 @@ namespace Application.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("Cnpj")
+                    b.Property<long>("CNPJ")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -215,16 +215,16 @@ namespace Application.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Application.Shared.Entities.Address", b =>
+            modelBuilder.Entity("Application.Shared.Entities.Adress", b =>
                 {
                     b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
-                        .WithOne("Address")
-                        .HasForeignKey("Application.Shared.Entities.Address", "RestaurantId")
+                        .WithOne("Adress")
+                        .HasForeignKey("Application.Shared.Entities.Adress", "RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Application.Shared.Entities.User", "User")
-                        .WithOne("Address")
-                        .HasForeignKey("Application.Shared.Entities.Address", "UserId")
+                        .WithOne("Adress")
+                        .HasForeignKey("Application.Shared.Entities.Adress", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Restaurant");
@@ -284,7 +284,7 @@ namespace Application.Migrations
 
             modelBuilder.Entity("Application.Shared.Entities.Restaurant", b =>
                 {
-                    b.Navigation("Address")
+                    b.Navigation("Adress")
                         .IsRequired();
 
                     b.Navigation("Information")
@@ -301,7 +301,7 @@ namespace Application.Migrations
 
             modelBuilder.Entity("Application.Shared.Entities.User", b =>
                 {
-                    b.Navigation("Address")
+                    b.Navigation("Adress")
                         .IsRequired();
 
                     b.Navigation("Login")

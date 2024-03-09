@@ -153,7 +153,7 @@ namespace Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Adress",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -200,14 +200,14 @@ namespace Application.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Adress_RestaurantId",
-                table: "Address",
+                table: "Adress",
                 column: "RestaurantId",
                 unique: true,
                 filter: "[RestaurantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Adress_UserId",
-                table: "Address",
+                table: "Adress",
                 column: "UserId",
                 unique: true,
                 filter: "[UserId] IS NOT NULL");
@@ -237,7 +237,7 @@ namespace Application.Migrations
                 name: "Access");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Adress");
 
             migrationBuilder.DropTable(
                 name: "AppUser");

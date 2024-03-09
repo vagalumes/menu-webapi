@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Modules
+namespace Cardapio_webapi.Modules
 {
     public static class ApiVersionConfigextensions
     {

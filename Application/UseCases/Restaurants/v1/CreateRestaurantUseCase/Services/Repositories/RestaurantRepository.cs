@@ -10,7 +10,7 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.R
 
         public RestaurantRepository(AppDbContext dbContext) => _dbContext = dbContext;
 
-        public bool RestaurantExists(long CNPJ) => _dbContext.Restaurants.Any(r => r.Cnpj == CNPJ);
+        public bool RestaurantExists(long CNPJ) => _dbContext.Restaurants.Any(r => r.CNPJ == CNPJ);
 
         public async Task CreateRestaurant(Restaurant restaurant, CancellationToken cancellationToken) => await _dbContext.Restaurants.AddAsync(restaurant, cancellationToken);
     }

@@ -20,7 +20,7 @@ namespace Application.UseCases.Users.v1.UpdateUserUseCase
                 return;
             }
             user.Update(request);
-            user.Address.Update(request.Address);
+            user.Adress.Update(request.Adress);
             user.Login.Update(request.Access);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);

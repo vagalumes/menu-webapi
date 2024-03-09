@@ -3,7 +3,7 @@ using Application.Shared.Services;
 using Application.Shared.Services.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApi.Modules
+namespace Cardapio_webapi.Modules
 {
     public static class DataBaseConfigExtensions
     {

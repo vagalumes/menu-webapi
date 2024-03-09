@@ -1,4 +1,4 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
 using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 

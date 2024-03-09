@@ -9,7 +9,7 @@ namespace Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories
     {
         public async Task<User?> GetUser(Guid userId, CancellationToken cancellationToken)
         {
-            return await dbContext.Users.Include(u => u.Address)
+            return await dbContext.Users.Include(u => u.Adress)
                 .Include(u => u.Login)
                 .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
         }

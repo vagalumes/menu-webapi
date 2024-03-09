@@ -1,6 +1,6 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions
 {
     public interface IOutputPort
     {

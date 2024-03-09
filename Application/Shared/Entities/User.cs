@@ -11,7 +11,7 @@ namespace Application.Shared.Entities
         public long CPF { get; set; }
         public DateTime BirthDate { get; set; }
         public string? Nationality { get; set; }
-        public Address Address { get; set; } = null!;
+        public Adress Adress { get; set; } = null!;
         public Login Login { get; set; } = null!;
 
         public User() { }
@@ -21,7 +21,7 @@ namespace Application.Shared.Entities
             Name = request.Name;
             CPF = request.CPF;
             BirthDate = request.BirthDate;
-            Address = new Address(adressRequest);
+            Adress = new Adress(adressRequest);
             Login = new Login(loginRequest);
         }
 

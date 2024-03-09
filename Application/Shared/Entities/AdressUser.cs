@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Application.Shared.Entities
 {
-    public class Address
+    public class Adress
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,9 +28,9 @@ namespace Application.Shared.Entities
         [JsonIgnore]
         public Restaurant? Restaurant { get; set; }
 
-        public Address() { }
+        public Adress() { }
 
-        public Address(AdressRequest request)
+        public Adress(AdressRequest request)
         {
             Road = request.Road;
             Neighborhood = request.Neighborhood;

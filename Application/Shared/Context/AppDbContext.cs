@@ -3,14 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Shared.Context
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+    public class AppDbContext : DbContext
     {
-        public DbSet<Address> Address { get; set; } = null!;
-        public DbSet<Information> Information { get; set; } = null!;
-        public DbSet<Login> Access { get; set; } = null!;
-        public DbSet<Payments> Payments { get; set; } = null!;
-        public DbSet<Restaurant> Restaurants { get; set; } = null!;
-        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Adress> Adress { get; set; }
+        public DbSet<Information> Information { get; set; }
+        public DbSet<Login> Access { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<OpeningHours> ServiceHours { get; set; }
+        public DbSet<User> Users { get; set; }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,7 +22,7 @@ namespace Application.Shared.Context
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Address)
+                       .HasOne(r => r.Adress)
                        .WithOne(re => re.Restaurant)
                        .OnDelete(DeleteBehavior.Cascade);
 
@@ -34,8 +36,13 @@ namespace Application.Shared.Context
                        .WithOne(re => re.Restaurant)
                        .OnDelete(DeleteBehavior.Cascade);
 
+            _ = modelBuilder.Entity<Restaurant>()
+                       .HasMany(r => r.ServiceHours)
+                       .WithOne(re => re.Restaurant)
+                       .OnDelete(DeleteBehavior.Cascade);
+
             _ = modelBuilder.Entity<User>()
-                       .HasOne(u => u.Address)
+                       .HasOne(u => u.Adress)
                        .WithOne(us => us.User)
                        .OnDelete(DeleteBehavior.Cascade);
 

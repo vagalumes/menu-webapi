@@ -11,9 +11,10 @@ namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repo
         {
             return await context.Restaurants
                                  .Include(r => r.Payments)
-                                 .Include(r => r.Address)
+                                 .Include(r => r.Adress)
                                  .Include(r => r.Login)
                                  .Include(r => r.Information)
+                                 .Include(r => r.ServiceHours)
                                  .FirstOrDefaultAsync(r => r.Id == restaurantId, cancellationToken);
         }
     }
