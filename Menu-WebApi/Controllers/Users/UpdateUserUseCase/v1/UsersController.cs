@@ -13,11 +13,11 @@ namespace Menu_WebApi.Controllers.Users.UpdateUserUseCase.v1
     {
         private IActionResult? _view;
 
-        [HttpPatch("{userId:guid}")]
-        public async Task<IActionResult> Post(Guid userId, [FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
+        [HttpPatch("{id:guid}")]
+        public async Task<IActionResult> Post(Guid id, [FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(userId, request, cancellationToken);
+            await useCase.ExecuteAsync(id, request, cancellationToken);
             return _view!;
         }
 

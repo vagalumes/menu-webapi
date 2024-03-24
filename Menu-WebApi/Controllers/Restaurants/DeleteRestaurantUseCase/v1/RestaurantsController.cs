@@ -2,23 +2,20 @@
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cardapio_webapi.Controllers.Restaurants.DeleteRestaurantUseCase.v1
+namespace Menu_WebApi.Controllers.Restaurants.DeleteRestaurantUseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class RestaurantsController : ControllerBase, IOutputPort
+    public class RestaurantsController(IDeleteRestaurantUseCase useCase) : ControllerBase, IOutputPort
     {
         private IActionResult? _viewModel;
-        private readonly IDeleteRestaurantUseCase _DeleteRestaurantUseCase;
 
-        public RestaurantsController(IDeleteRestaurantUseCase useCase) => _DeleteRestaurantUseCase = useCase;
-
-        [HttpDelete("{restaurantId:guid}")]
-        public async Task<IActionResult> DeleteRestaurant(Guid restaurantId, CancellationToken cancellationToken)
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteRestaurant(Guid id, CancellationToken cancellationToken)
         {
-            _DeleteRestaurantUseCase.SetOutputPort(this);
-            await _DeleteRestaurantUseCase.ExecuteAsync(restaurantId, cancellationToken);
+            useCase.SetOutputPort(this);
+            await useCase.ExecuteAsync(id, cancellationToken);
             return _viewModel!;
         }
 

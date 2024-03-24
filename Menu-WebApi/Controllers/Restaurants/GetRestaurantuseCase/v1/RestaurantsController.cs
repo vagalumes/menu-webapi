@@ -12,11 +12,11 @@ namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
     {
         private IActionResult? _viewModel;
 
-        [HttpGet("{restaurantId:guid}")]
-        public async Task<IActionResult> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken)
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetRestaurant(Guid id, CancellationToken cancellationToken)
         {
             useCase.SetOutputport(this);
-            await useCase.ExecuteAsync(restaurantId, cancellationToken);
+            await useCase.ExecuteAsync(id, cancellationToken);
             return _viewModel!;
         }
 

@@ -11,11 +11,11 @@ namespace Menu_WebApi.Controllers.Users.DeleteUserUseCase.v1
     {
         private IActionResult? _viewModel;
 
-        [HttpDelete("{userId:guid}")]
-        public async Task<IActionResult> Delete(Guid userId, CancellationToken cancellationToken)
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(userId, cancellationToken);
+            await useCase.ExecuteAsync(id, cancellationToken);
             return _viewModel!;
         }
 

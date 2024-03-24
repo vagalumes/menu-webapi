@@ -49,7 +49,7 @@ namespace Application.Migrations
                     b.Property<string>("Road")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UF")
+                    b.Property<string>("Uf")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("UserId")
@@ -66,6 +66,46 @@ namespace Application.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Adress");
+                });
+
+            modelBuilder.Entity("Application.Shared.Entities.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("MenuItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuItemId");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.Information", b =>
@@ -119,6 +159,33 @@ namespace Application.Migrations
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Access");
+                });
+
+            modelBuilder.Entity("Application.Shared.Entities.MenuItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("MenuItem");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.OpeningHours", b =>
@@ -200,7 +267,7 @@ namespace Application.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("Cpf")
+                    b.Property<long>("CPF")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
@@ -225,6 +292,27 @@ namespace Application.Migrations
                     b.HasOne("Application.Shared.Entities.User", "User")
                         .WithOne("Adress")
                         .HasForeignKey("Application.Shared.Entities.Adress", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Application.Shared.Entities.Image", b =>
+                {
+                    b.HasOne("Application.Shared.Entities.MenuItem", null)
+                        .WithMany("images")
+                        .HasForeignKey("MenuItemId");
+
+                    b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
+                        .WithMany("Images")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Application.Shared.Entities.User", "User")
+                        .WithMany("Images")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Restaurant");
@@ -260,6 +348,17 @@ namespace Application.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Application.Shared.Entities.MenuItem", b =>
+                {
+                    b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
+                        .WithMany("MenuItems")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
             modelBuilder.Entity("Application.Shared.Entities.OpeningHours", b =>
                 {
                     b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
@@ -282,16 +381,25 @@ namespace Application.Migrations
                     b.Navigation("Restaurant");
                 });
 
+            modelBuilder.Entity("Application.Shared.Entities.MenuItem", b =>
+                {
+                    b.Navigation("images");
+                });
+
             modelBuilder.Entity("Application.Shared.Entities.Restaurant", b =>
                 {
                     b.Navigation("Adress")
                         .IsRequired();
+
+                    b.Navigation("Images");
 
                     b.Navigation("Information")
                         .IsRequired();
 
                     b.Navigation("Login")
                         .IsRequired();
+
+                    b.Navigation("MenuItems");
 
                     b.Navigation("Payments")
                         .IsRequired();
@@ -303,6 +411,8 @@ namespace Application.Migrations
                 {
                     b.Navigation("Adress")
                         .IsRequired();
+
+                    b.Navigation("Images");
 
                     b.Navigation("Login")
                         .IsRequired();

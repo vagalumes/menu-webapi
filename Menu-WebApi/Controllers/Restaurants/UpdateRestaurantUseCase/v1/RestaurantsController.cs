@@ -13,11 +13,11 @@ namespace Menu_WebApi.Controllers.Restaurants.UpdateRestaurantUseCase.v1
     {
         private IActionResult? _view;
 
-        [HttpPatch("{restaurantId:guid}")]
-        public async Task<IActionResult> Post(Guid restaurantId, [FromBody] UpdateRestaurantRequest request, CancellationToken cancellationToken)
+        [HttpPatch("{id:guid}")]
+        public async Task<IActionResult> Post(Guid id, [FromBody] UpdateRestaurantRequest request, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(restaurantId, request, cancellationToken);
+            await useCase.ExecuteAsync(id, request, cancellationToken);
             return _view!;
         }
 

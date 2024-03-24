@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Shared.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
         public DbSet<Adress> Adress { get; set; }
         public DbSet<Information> Information { get; set; }
@@ -12,7 +12,8 @@ namespace Application.Shared.Context
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<OpeningHours> ServiceHours { get; set; }
         public DbSet<User> Users { get; set; }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public DbSet<MenuItem> MenuItem { get; set; }
+        public DbSet<Image> Image { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +42,16 @@ namespace Application.Shared.Context
                        .WithOne(re => re.Restaurant)
                        .OnDelete(DeleteBehavior.Cascade);
 
+            _ = modelBuilder.Entity<Restaurant>()
+                       .HasMany(r => r.Images)
+                       .WithOne(re => re.Restaurant)
+                       .OnDelete(DeleteBehavior.Cascade);
+
+            _ = modelBuilder.Entity<Restaurant>()
+                       .HasMany(r => r.MenuItems)
+                       .WithOne(re => re.Restaurant)
+                       .OnDelete(DeleteBehavior.Cascade);
+
             _ = modelBuilder.Entity<User>()
                        .HasOne(u => u.Adress)
                        .WithOne(us => us.User)
@@ -51,6 +62,10 @@ namespace Application.Shared.Context
                        .WithOne(us => us.User)
                        .OnDelete(DeleteBehavior.Cascade);
 
+            _ = modelBuilder.Entity<User>()
+                       .HasMany(u => u.Images)
+                       .WithOne(us => us.User)
+                       .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

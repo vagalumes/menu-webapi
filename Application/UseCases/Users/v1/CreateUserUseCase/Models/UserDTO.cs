@@ -12,6 +12,7 @@ namespace Application.UseCases.Users.v1.CreateUserUseCase.Models
 
         public UserDto(Shared.Entities.User user)
         {
+            Id = user.Id;
             Name = user.Name;
             CPF = user.CPF;
             BirthDate = user.BirthDate;

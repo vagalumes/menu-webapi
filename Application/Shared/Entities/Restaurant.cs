@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.Shared.Entities
 {
-    public class Restaurant
+    public class Restaurant()
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,9 +19,11 @@ namespace Application.Shared.Entities
         public Adress Adress { get; set; } = null!;
         public List<OpeningHours> ServiceHours { get; set; } = new List<OpeningHours>();
 
-        public Restaurant() { }
+        public IEnumerable<MenuItem> MenuItems { get; set; }
 
-        public Restaurant(CreateRestaurantRequest request, AdressRequest adressRequest, InformationRequest informationRequest, LoginRequest loginRequest, PaymentRequest paymentRequest, List<OpeningHoursRequest>? openingHoursRequest)
+        public ICollection<Image> Images { get; set; } = new List<Image>();
+
+        public Restaurant(CreateRestaurantRequest request, AdressRequest adressRequest, InformationRequest informationRequest, LoginRequest loginRequest, PaymentRequest paymentRequest, List<OpeningHoursRequest>? openingHoursRequest) : this()
         {
             Name = request.Name;
             CNPJ = request.CNPJ;

@@ -12,11 +12,11 @@ namespace Menu_WebApi.Controllers.Users.GetUserUseCase.v1
     {
         private IActionResult? _view;
 
-        [HttpGet("{userId:Guid}")]
-        public async Task<IActionResult> Get(Guid userId, CancellationToken cancellationToken)
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(userId, cancellationToken);
+            await useCase.ExecuteAsync(id, cancellationToken);
             return _view!;
         }
 
