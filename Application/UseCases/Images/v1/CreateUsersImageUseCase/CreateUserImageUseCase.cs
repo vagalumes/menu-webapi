@@ -32,7 +32,7 @@ namespace Application.UseCases.Images.v1.CreateUsersImageUseCase
         {
             foreach (var file in fileInfos)
             {
-                user.Images.Add(new Image
+                user.Images.Add(new UsersImages
                 {
                     Extension = file.Extension,
                     Name = file.Name,

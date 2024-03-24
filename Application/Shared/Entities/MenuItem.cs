@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,7 +14,7 @@ namespace Application.Shared.Entities
         public string Description { get; set; } = null!;
         public double Price { get; set; }
 
-        public ICollection<Image> Images { get; set; } = new List<Image>();
+        public ICollection<MenuItemsImages> Images { get; set; } = new Collection<MenuItemsImages>();
 
         public Restaurant Restaurant { get; set; } = null!;
 

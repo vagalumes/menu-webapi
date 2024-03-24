@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Images.v1.CreateRestaurantsImageUseCase
 {
-    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/upload-image")]
+    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/upload-images")]
     [ApiVersion("1.0")]
     [ApiController]
     public class RestaurantsController(ICreateImageUseCase useCase) : ControllerBase, IOutputPort

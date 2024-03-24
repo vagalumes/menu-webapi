@@ -30,7 +30,7 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
         {
             foreach (var file in fileInfos)
             {
-                menu.Images.Add(new Image
+                menu.Images.Add(new MenuItemsImages
                 {
                     Extension = file.Extension,
                     Name = file.Name,

@@ -33,7 +33,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
         {
             foreach (var file in fileInfos)
             {
-                restaurant.Images.Add(new Image
+                restaurant.Images.Add(new RestaurantsImages
                 {
                     Extension = file.Extension,
                     Name = file.Name,

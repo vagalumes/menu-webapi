@@ -1,6 +1,7 @@
 ﻿using Application.Shared.Models.Request;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
 using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,7 +19,7 @@ namespace Application.Shared.Entities
         public Adress Adress { get; set; } = null!;
         public Login Login { get; set; } = null!;
 
-        public ICollection<Image> Images { get; set; } = new List<Image>();
+        public ICollection<UsersImages> Images { get; set; } = new Collection<UsersImages>();
         public User() { }
 
         public User(CreateUserRequest request, AdressRequest adressRequest, LoginRequest loginRequest)

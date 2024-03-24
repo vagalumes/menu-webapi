@@ -4,7 +4,8 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Repo
 {
     public interface IMenuItemRepository
     {
-        bool RestaurantExists(long Cnpj);
+        Task<Restaurant?> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken);
+
         Task CreateMenuItems(MenuItem menuItem, CancellationToken cancellationToken);
     }
 }

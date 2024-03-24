@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.MenuItems.CreateMenuItemUseCase.v1
 {
-    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/menuItem")]
+    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/menu-items")]
     [ApiVersion("1.0")]
     [ApiController]
     public class RestaurantsController(ICreateMenuItemsUseCase useCase, Notification notification) : ControllerBase, IOutputPort

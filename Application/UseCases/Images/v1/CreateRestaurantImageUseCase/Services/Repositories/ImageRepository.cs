@@ -7,15 +7,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services.R
 {
     public class ImageRepository(AppDbContext dbContext) : IImageRepository
     {
-        public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken)
-        {
-            return await dbContext.Restaurants
-                .Include(r => r.Payments)
-                .Include(r => r.Adress)
-                .Include(r => r.Login)
-                .Include(r => r.Information)
-                .Include(r => r.ServiceHours)
-                .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
-        }
+        public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken) =>
+            await dbContext.Restaurants.FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
     }
 }

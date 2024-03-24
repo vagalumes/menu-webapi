@@ -1,6 +1,7 @@
 ﻿using Application.Shared.Models.Request;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,7 +22,7 @@ namespace Application.Shared.Entities
 
         public IEnumerable<MenuItem> MenuItems { get; set; }
 
-        public ICollection<Image> Images { get; set; } = new List<Image>();
+        public ICollection<RestaurantsImages> Images { get; set; } = new Collection<RestaurantsImages>();
 
         public Restaurant(CreateRestaurantRequest request, AdressRequest adressRequest, InformationRequest informationRequest, LoginRequest loginRequest, PaymentRequest paymentRequest, List<OpeningHoursRequest>? openingHoursRequest) : this()
         {

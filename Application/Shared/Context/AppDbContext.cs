@@ -13,7 +13,9 @@ namespace Application.Shared.Context
         public DbSet<OpeningHours> ServiceHours { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MenuItem> MenuItem { get; set; }
-        public DbSet<Image> Image { get; set; }
+        public DbSet<UsersImages> UsersImages { get; set; }
+        public DbSet<RestaurantsImages> RestaurantsImages { get; set; }
+        public DbSet<MenuItemsImages> MenuItemsImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +52,11 @@ namespace Application.Shared.Context
             _ = modelBuilder.Entity<Restaurant>()
                        .HasMany(r => r.MenuItems)
                        .WithOne(re => re.Restaurant)
+                       .OnDelete(DeleteBehavior.Cascade);
+
+            _ = modelBuilder.Entity<MenuItem>()
+                       .HasMany(m => m.Images)
+                       .WithOne(me => me.MenuItem)
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<User>()

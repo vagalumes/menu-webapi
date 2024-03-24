@@ -3,11 +3,10 @@ using Application.Shared.Services.Abstractions;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories.Abstractions;
 
 namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
 {
-    public class CreateMenuItemUseCase(IMenuItemRepository repository, IUnitOfWork unitOfWork, IRestaurantRepository restaurantRepository) : ICreateMenuItemsUseCase
+    public class CreateMenuItemUseCase(IMenuItemRepository repository, IUnitOfWork unitOfWork) : ICreateMenuItemsUseCase
     {
         private IOutputPort? _outputPort;
 
@@ -15,7 +14,7 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
 
         public async Task ExecuteAsync(Guid id, CreateMenuItemsRequest request, CancellationToken cancellationToken)
         {
-            var restaurant = await restaurantRepository.GetRestaurant(id, cancellationToken);
+            var restaurant = await repository.GetRestaurant(id, cancellationToken);
             if (restaurant is null)
             {
                 _outputPort!.RestaurantNotFound("Restaurante não localizado!");
