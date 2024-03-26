@@ -4,6 +4,7 @@ using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 
 namespace Application.Shared.Entities
 {
@@ -16,20 +17,11 @@ namespace Application.Shared.Entities
         public long CPF { get; set; }
         public DateTime BirthDate { get; set; }
         public string? Nationality { get; set; }
-        public Adress Adress { get; set; } = null!;
+        public Address Address { get; set; } = null!;
         public Login Login { get; set; } = null!;
 
-        public ICollection<UsersImages> Images { get; set; } = new Collection<UsersImages>();
+        public ICollection<UsersImages> Images { get; set; } = [];
         public User() { }
-
-        public User(CreateUserRequest request, AdressRequest adressRequest, LoginRequest loginRequest)
-        {
-            Name = request.Name;
-            CPF = request.CPF;
-            BirthDate = request.BirthDate;
-            Adress = new Adress(adressRequest);
-            Login = new Login(loginRequest);
-        }
 
         public void Update(UpdateUserRequest request) => Name = request.Name ?? Name;
     }

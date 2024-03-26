@@ -2,7 +2,6 @@
 using Application.Shared.Models.Request;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Application.Shared.Entities
 {
@@ -13,9 +12,6 @@ namespace Application.Shared.Entities
         public Guid Id { get; set; }
         public List<EnumTypePayments> TypePayment { get; set; } = null!;
 
-        [JsonIgnore]
-        public Guid RestaurantId { get; set; }
-        [JsonIgnore]
         public Restaurant Restaurant { get; set; } = null!;
 
         public Payments(PaymentRequest request) => TypePayment = request.TypePayments;
@@ -26,7 +22,7 @@ namespace Application.Shared.Entities
 
         internal void Update(PaymentRequest payments)
         {
-            TypePayment = payments.TypePayments != null ? payments.TypePayments.ToList() : TypePayment;
+            TypePayment = payments.TypePayments ?? TypePayment;
         }
     }
 }

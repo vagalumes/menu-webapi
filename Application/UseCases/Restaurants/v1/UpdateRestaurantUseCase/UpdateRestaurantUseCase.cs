@@ -23,13 +23,6 @@ namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase
             }
 
             restaurant.Update(request);
-            restaurant.Adress.Update(request.AdressRequest);
-            restaurant.Information.Update(request.InformationRequest);
-            restaurant.Login.Update(request.LoginRequest);
-            restaurant.Payments.Update(request.PaymentRequest);
-
-            if (request.ServiceHours.Count != 0)
-                restaurant.ServiceHours = request.ServiceHours.Select(oh => new OpeningHours(oh)).ToList();
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

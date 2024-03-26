@@ -5,17 +5,17 @@ namespace Application.Shared.Context
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Adress> Adress { get; set; }
-        public DbSet<Information> Information { get; set; }
-        public DbSet<Login> Access { get; set; }
-        public DbSet<Payments> Payments { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<OpeningHours> ServiceHours { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<MenuItem> MenuItem { get; set; }
-        public DbSet<UsersImages> UsersImages { get; set; }
-        public DbSet<RestaurantsImages> RestaurantsImages { get; set; }
-        public DbSet<MenuItemsImages> MenuItemsImages { get; set; }
+        public required DbSet<Address> Address { get; set; }
+        public required DbSet<Information> Information { get; set; }
+        public required DbSet<Login> Access { get; set; }
+        public required DbSet<Payments> Payments { get; set; }
+        public required DbSet<Restaurant> Restaurants { get; set; }
+        public required DbSet<Schedule> Schedules { get; set; }
+        public required DbSet<User> Users { get; set; }
+        public required DbSet<MenuItem> MenuItem { get; set; }
+        public required DbSet<UsersImages> UsersImages { get; set; }
+        public required DbSet<RestaurantsImages> RestaurantsImages { get; set; }
+        public required DbSet<MenuItemsImages> MenuItemsImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,23 +25,13 @@ namespace Application.Shared.Context
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Adress)
+                       .HasOne(r => r.Address)
                        .WithOne(re => re.Restaurant)
                        .OnDelete(DeleteBehavior.Cascade);
 
-            _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Payments)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
-
-            _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Login)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
-
-            _ = modelBuilder.Entity<Restaurant>()
-                       .HasMany(r => r.ServiceHours)
-                       .WithOne(re => re.Restaurant)
+            _ = modelBuilder.Entity<Address>()
+                       .HasOne(a => a.Restaurant)
+                       .WithOne(re => re.Address)
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
@@ -54,14 +44,14 @@ namespace Application.Shared.Context
                        .WithOne(re => re.Restaurant)
                        .OnDelete(DeleteBehavior.Cascade);
 
+            _ = modelBuilder.Entity<Information>()
+                       .HasMany(i => i.Schedules)
+                       .WithOne(s => s.Information)
+                       .OnDelete(DeleteBehavior.Cascade);
+
             _ = modelBuilder.Entity<MenuItem>()
                        .HasMany(m => m.Images)
                        .WithOne(me => me.MenuItem)
-                       .OnDelete(DeleteBehavior.Cascade);
-
-            _ = modelBuilder.Entity<User>()
-                       .HasOne(u => u.Adress)
-                       .WithOne(us => us.User)
                        .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<User>()

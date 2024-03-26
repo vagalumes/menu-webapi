@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Application.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateItemImage : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace Application.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CNPJ = table.Column<long>(type: "bigint", nullable: false)
+                    Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,18 +25,28 @@ namespace Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Address",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<long>(type: "bigint", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Neighborhood = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Address_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
+                        principalTable: "Restaurants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -99,24 +109,87 @@ namespace Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServiceHours",
+                name: "RestaurantsImages",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DayOfWeek = table.Column<int>(type: "int", nullable: false),
-                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClosingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    OpeningTime2 = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ClosingTime2 = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false),
                     RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServiceHours", x => x.Id);
+                    table.PrimaryKey("PK_RestaurantsImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ServiceHours_Restaurants_RestaurantId",
+                        name: "FK_RestaurantsImages_Restaurants_RestaurantId",
                         column: x => x.RestaurantId,
                         principalTable: "Restaurants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CPF = table.Column<long>(type: "bigint", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schedules",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOfWeek = table.Column<int>(type: "int", nullable: false),
+                    Start = table.Column<TimeOnly>(type: "time", nullable: false),
+                    End = table.Column<TimeOnly>(type: "time", nullable: false),
+                    InformationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schedules_Information_InformationId",
+                        column: x => x.InformationId,
+                        principalTable: "Information",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MenuItemsImages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MenuItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuItemsImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MenuItemsImages_MenuItem_MenuItemId",
+                        column: x => x.MenuItemId,
+                        principalTable: "MenuItem",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -128,18 +201,11 @@ namespace Application.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Access = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Access", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Access_Restaurants_RestaurantId",
-                        column: x => x.RestaurantId,
-                        principalTable: "Restaurants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Access_Users_UserId",
                         column: x => x.UserId,
@@ -149,39 +215,7 @@ namespace Application.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adress",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Road = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Neighborhood = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Uf = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Cep = table.Column<long>(type: "bigint", nullable: false),
-                    Number = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adress", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adress_Restaurants_RestaurantId",
-                        column: x => x.RestaurantId,
-                        principalTable: "Restaurants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Adress_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Image",
+                name: "UsersImages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -189,26 +223,14 @@ namespace Application.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    MenuItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.PrimaryKey("PK_UsersImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Image_MenuItem_MenuItemId",
-                        column: x => x.MenuItemId,
-                        principalTable: "MenuItem",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Image_Restaurants_RestaurantId",
-                        column: x => x.RestaurantId,
-                        principalTable: "Restaurants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Image_Users_UserId",
+                        name: "FK_UsersImages_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -216,47 +238,16 @@ namespace Application.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Access_RestaurantId",
-                table: "Access",
-                column: "RestaurantId",
-                unique: true,
-                filter: "[RestaurantId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Access_UserId",
                 table: "Access",
                 column: "UserId",
-                unique: true,
-                filter: "[UserId] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adress_RestaurantId",
-                table: "Adress",
+                name: "IX_Address_RestaurantId",
+                table: "Address",
                 column: "RestaurantId",
-                unique: true,
-                filter: "[RestaurantId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Adress_UserId",
-                table: "Adress",
-                column: "UserId",
-                unique: true,
-                filter: "[UserId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Image_MenuItemId",
-                table: "Image",
-                column: "MenuItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Image_RestaurantId",
-                table: "Image",
-                column: "RestaurantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Image_UserId",
-                table: "Image",
-                column: "UserId");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Information_RestaurantId",
@@ -270,15 +261,34 @@ namespace Application.Migrations
                 column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_RestaurantId",
-                table: "Payments",
-                column: "RestaurantId",
-                unique: true);
+                name: "IX_MenuItemsImages_MenuItemId",
+                table: "MenuItemsImages",
+                column: "MenuItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceHours_RestaurantId",
-                table: "ServiceHours",
+                name: "IX_Payments_RestaurantId",
+                table: "Payments",
                 column: "RestaurantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RestaurantsImages_RestaurantId",
+                table: "RestaurantsImages",
+                column: "RestaurantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedules_InformationId",
+                table: "Schedules",
+                column: "InformationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_AddressId",
+                table: "Users",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersImages_UserId",
+                table: "UsersImages",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -288,25 +298,31 @@ namespace Application.Migrations
                 name: "Access");
 
             migrationBuilder.DropTable(
-                name: "Adress");
-
-            migrationBuilder.DropTable(
-                name: "Image");
-
-            migrationBuilder.DropTable(
-                name: "Information");
+                name: "MenuItemsImages");
 
             migrationBuilder.DropTable(
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "ServiceHours");
+                name: "RestaurantsImages");
+
+            migrationBuilder.DropTable(
+                name: "Schedules");
+
+            migrationBuilder.DropTable(
+                name: "UsersImages");
 
             migrationBuilder.DropTable(
                 name: "MenuItem");
 
             migrationBuilder.DropTable(
+                name: "Information");
+
+            migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "Restaurants");

@@ -1,28 +1,23 @@
-﻿using Application.Shared.Models.Request;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 
 namespace Application.Shared.Entities
 {
-    public class Information
+    public class Information()
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string? Description { get; set; }
-
-        [JsonIgnore]
+        public ICollection<Schedule> Schedules { get; set; } = [];
         public Guid RestaurantId { get; set; }
-        [JsonIgnore]
         public Restaurant Restaurant { get; set; } = null!;
 
-        public Information() { }
-
-        public Information(InformationRequest request) => Description = request.Description;
-
-        public Information(InformationRequest? request, Information? inform) => Description = request!.Description ?? inform!.Description;
-
-        public void Update(InformationRequest request) => Description = request.Description ?? Description;
+        public Information(InformationRequest informationRequest) : this()
+        {
+            Description = informationRequest.Description;
+            Schedules = informationRequest.Schedule.Select(x => new Schedule(x.Day, x.Start, x.End)).ToList();
+        }
     }
 }

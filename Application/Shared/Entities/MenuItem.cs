@@ -14,7 +14,7 @@ namespace Application.Shared.Entities
         public string Description { get; set; } = null!;
         public double Price { get; set; }
 
-        public ICollection<MenuItemsImages> Images { get; set; } = new Collection<MenuItemsImages>();
+        public ICollection<MenuItemsImages> Images { get; set; } = [];
 
         public Restaurant Restaurant { get; set; } = null!;
 

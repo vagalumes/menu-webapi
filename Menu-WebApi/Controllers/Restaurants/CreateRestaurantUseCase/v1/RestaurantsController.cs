@@ -23,6 +23,6 @@ namespace Menu_WebApi.Controllers.Restaurants.CreateRestaurantUseCase.v1
 
         void IOutputPort.InvalidRequest() => _viewModel = NotFound(new ValidationError(notification, HttpContext));
 
-        void IOutputPort.RestaurantCreated(RestaurantDto restaurant) => _viewModel = Created($"api/v1/restaurants/{restaurant.Id}", restaurant);
+        void IOutputPort.RestaurantCreated() => _viewModel = Created();
     }
 }

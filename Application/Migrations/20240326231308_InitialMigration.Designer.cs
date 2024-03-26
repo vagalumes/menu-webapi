@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Application.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240324203234_createImageTableForEachContext")]
-    partial class createImageTableForEachContext
+    [Migration("20240326231308_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,16 +25,14 @@ namespace Application.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Application.Shared.Entities.Adress", b =>
+            modelBuilder.Entity("Application.Shared.Entities.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("Cep")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Complement")
@@ -43,32 +41,29 @@ namespace Application.Migrations
                     b.Property<string>("Neighborhood")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("RestaurantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Road")
+                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Uf")
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId")
-                        .IsUnique()
-                        .HasFilter("[RestaurantId] IS NOT NULL");
+                        .IsUnique();
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
-
-                    b.ToTable("Adress");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.Information", b =>
@@ -105,21 +100,13 @@ namespace Application.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("RestaurantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId")
-                        .IsUnique()
-                        .HasFilter("[RestaurantId] IS NOT NULL");
-
                     b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Access");
                 });
@@ -179,37 +166,6 @@ namespace Application.Migrations
                     b.ToTable("MenuItemsImages");
                 });
 
-            modelBuilder.Entity("Application.Shared.Entities.OpeningHours", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ClosingTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ClosingTime2")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DayOfWeek")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("OpeningTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OpeningTime2")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("RestaurantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RestaurantId");
-
-                    b.ToTable("ServiceHours");
-                });
-
             modelBuilder.Entity("Application.Shared.Entities.Payments", b =>
                 {
                     b.Property<Guid>("Id")
@@ -225,8 +181,7 @@ namespace Application.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId")
-                        .IsUnique();
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("Payments");
                 });
@@ -237,8 +192,9 @@ namespace Application.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("CNPJ")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Cnpj")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -280,10 +236,38 @@ namespace Application.Migrations
                     b.ToTable("RestaurantsImages");
                 });
 
+            modelBuilder.Entity("Application.Shared.Entities.Schedule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("End")
+                        .HasColumnType("time");
+
+                    b.Property<Guid>("InformationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<TimeOnly>("Start")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InformationId");
+
+                    b.ToTable("Schedules");
+                });
+
             modelBuilder.Entity("Application.Shared.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("BirthDate")
@@ -300,6 +284,8 @@ namespace Application.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Users");
                 });
@@ -337,21 +323,15 @@ namespace Application.Migrations
                     b.ToTable("UsersImages");
                 });
 
-            modelBuilder.Entity("Application.Shared.Entities.Adress", b =>
+            modelBuilder.Entity("Application.Shared.Entities.Address", b =>
                 {
                     b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
-                        .WithOne("Adress")
-                        .HasForeignKey("Application.Shared.Entities.Adress", "RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Application.Shared.Entities.User", "User")
-                        .WithOne("Adress")
-                        .HasForeignKey("Application.Shared.Entities.Adress", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Address")
+                        .HasForeignKey("Application.Shared.Entities.Address", "RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Restaurant");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.Information", b =>
@@ -367,17 +347,11 @@ namespace Application.Migrations
 
             modelBuilder.Entity("Application.Shared.Entities.Login", b =>
                 {
-                    b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
-                        .WithOne("Login")
-                        .HasForeignKey("Application.Shared.Entities.Login", "RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Application.Shared.Entities.User", "User")
                         .WithOne("Login")
                         .HasForeignKey("Application.Shared.Entities.Login", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Restaurant");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -404,22 +378,11 @@ namespace Application.Migrations
                     b.Navigation("MenuItem");
                 });
 
-            modelBuilder.Entity("Application.Shared.Entities.OpeningHours", b =>
-                {
-                    b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
-                        .WithMany("ServiceHours")
-                        .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Restaurant");
-                });
-
             modelBuilder.Entity("Application.Shared.Entities.Payments", b =>
                 {
                     b.HasOne("Application.Shared.Entities.Restaurant", "Restaurant")
-                        .WithOne("Payments")
-                        .HasForeignKey("Application.Shared.Entities.Payments", "RestaurantId")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -437,6 +400,28 @@ namespace Application.Migrations
                     b.Navigation("Restaurant");
                 });
 
+            modelBuilder.Entity("Application.Shared.Entities.Schedule", b =>
+                {
+                    b.HasOne("Application.Shared.Entities.Information", "Information")
+                        .WithMany("Schedules")
+                        .HasForeignKey("InformationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Information");
+                });
+
+            modelBuilder.Entity("Application.Shared.Entities.User", b =>
+                {
+                    b.HasOne("Application.Shared.Entities.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("Application.Shared.Entities.UsersImages", b =>
                 {
                     b.HasOne("Application.Shared.Entities.User", "User")
@@ -448,6 +433,11 @@ namespace Application.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Application.Shared.Entities.Information", b =>
+                {
+                    b.Navigation("Schedules");
+                });
+
             modelBuilder.Entity("Application.Shared.Entities.MenuItem", b =>
                 {
                     b.Navigation("Images");
@@ -455,30 +445,18 @@ namespace Application.Migrations
 
             modelBuilder.Entity("Application.Shared.Entities.Restaurant", b =>
                 {
-                    b.Navigation("Adress")
+                    b.Navigation("Address")
                         .IsRequired();
 
                     b.Navigation("Images");
 
-                    b.Navigation("Information")
-                        .IsRequired();
-
-                    b.Navigation("Login")
-                        .IsRequired();
+                    b.Navigation("Information");
 
                     b.Navigation("MenuItems");
-
-                    b.Navigation("Payments")
-                        .IsRequired();
-
-                    b.Navigation("ServiceHours");
                 });
 
             modelBuilder.Entity("Application.Shared.Entities.User", b =>
                 {
-                    b.Navigation("Adress")
-                        .IsRequired();
-
                     b.Navigation("Images");
 
                     b.Navigation("Login")

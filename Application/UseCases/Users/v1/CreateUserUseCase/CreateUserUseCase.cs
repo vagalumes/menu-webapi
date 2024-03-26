@@ -20,7 +20,7 @@ namespace Application.UseCases.Users.v1.CreateUserUseCase
 
         private async Task<UserDto> SaveUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var user = new Shared.Entities.User(request, request.Adress, request.Access);
+            var user = new Shared.Entities.User();
             await repository.CreateUser(user, cancellationToken);
             var userDto = new UserDto(user);
             await unitOfWork.SaveChangesAsync(cancellationToken);

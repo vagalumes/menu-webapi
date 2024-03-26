@@ -14,22 +14,18 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
         public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
-            var restaurant = await SaveRestaurant(request, cancellationToken);
+            await SaveRestaurant(request, cancellationToken);
 
-            _outputPort!.RestaurantCreated(restaurant);
+            _outputPort!.RestaurantCreated();
         }
 
-        private async Task<RestaurantDto> SaveRestaurant(CreateRestaurantRequest request, CancellationToken cancellationToken)
+        private async Task SaveRestaurant(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
-            var restaurant = new Restaurant(request, request.AdressRequest, request.InformationRequest!, request.LoginRequest, request.PaymentRequest, request.ServiceHours);
+            var restaurant = new Restaurant(request);
 
             await repository.CreateRestaurant(restaurant, cancellationToken);
 
-            var restaurantDto = new RestaurantDto(restaurant);
-
             await unitOfWork.SaveChangesAsync(cancellationToken);
-
-            return restaurantDto;
         }
     }
 }

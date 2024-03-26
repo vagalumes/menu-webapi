@@ -13,14 +13,7 @@ namespace Application.Shared.Entities
         public string Access { get; set; } = null!;
         public string Password { get; set; } = null!;
 
-        [JsonIgnore]
-        public Guid? RestaurantId { get; set; }
-        [JsonIgnore]
-        public Restaurant? Restaurant { get; set; }
-
-        [JsonIgnore]
-        public Guid? UserId { get; set; }
-        [JsonIgnore]
+        public Guid UserId { get; set; }
         public User? User { get; set; }
 
         public Login() { }

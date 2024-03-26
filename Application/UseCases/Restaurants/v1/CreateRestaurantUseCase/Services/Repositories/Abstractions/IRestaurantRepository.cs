@@ -4,7 +4,7 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.R
 {
     public interface IRestaurantRepository
     {
-        bool RestaurantExists(long CNPJ);
+        Task<bool> RestaurantExists(string cnpj);
         Task CreateRestaurant(Restaurant restaurant, CancellationToken cancellationToken);
     }
 }

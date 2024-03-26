@@ -2,7 +2,7 @@
 
 namespace Cardapio_webapi.Modules
 {
-    public static class ApiVersionConfigextensions
+    public static class ApiVersionConfigExtensions
     {
         public static IServiceCollection AddApiVersion(this IServiceCollection services)
         {

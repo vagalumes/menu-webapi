@@ -2,10 +2,11 @@
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repositories.Abstractions;
+using FluentValidation;
 
 namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 {
-    public class CreateRestaurantValidationUseCase(IRestaurantRepository repository, ICreateRestaurantUseCase useCase, Notification notification) : ICreateRestaurantUseCase
+    public class CreateRestaurantValidationUseCase(IRestaurantRepository repository, ICreateRestaurantUseCase useCase, IValidator<CreateRestaurantRequest> validator, Notification notification) : ICreateRestaurantUseCase
     {
         private IOutputPort? _outputPort;
 
@@ -17,11 +18,10 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
         public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
-            var checkRestaurant = repository.RestaurantExists(request.CNPJ);
-
-            if (checkRestaurant)
-                notification.AddErrorMessage(nameof(request.CNPJ), "Restaurante já existente");
-
+            var result = await validator.ValidateAsync(request, cancellationToken);
+            
+            notification.AddErrorMessages(result);
+            
             if (notification.IsInvalid)
             {
                 _outputPort!.InvalidRequest();
