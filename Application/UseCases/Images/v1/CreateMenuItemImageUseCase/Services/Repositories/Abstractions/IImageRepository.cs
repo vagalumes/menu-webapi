@@ -4,6 +4,7 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Rep
 {
     public interface IImageRepository
     {
-        Task<MenuItem?> GetMenuItem(Guid id, CancellationToken cancellationToken);
+        Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken);
+        Task<MenuItem?> GetMenuItem(Guid menuItemId, CancellationToken cancellationToken);
     }
 }

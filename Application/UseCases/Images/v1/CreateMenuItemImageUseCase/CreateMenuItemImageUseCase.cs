@@ -2,7 +2,6 @@
 using Application.Shared.Services.Abstractions;
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Abstractions;
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Repositories.Abstractions;
-using Application.UseCases.Images.v1.UploadService.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
@@ -11,9 +10,16 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
     {
         private IOutputPort? _outputPort;
         public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
-        public async Task ExecuteAsync(Guid id, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
+        public async Task ExecuteAsync(Guid id, Guid menuItemId, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
         {
-            var menu = await repository.GetMenuItem(id, cancellationToken);
+            var restaurant = await repository.GetRestaurant(id, cancellationToken);
+            if (restaurant is null)
+            {
+                _outputPort!.RestaurantNotFound();
+                return;
+            }
+
+            var menu = await repository.GetMenuItem(menuItemId, cancellationToken);
             if (menu is null)
             {
                 _outputPort!.MenuNotFound();

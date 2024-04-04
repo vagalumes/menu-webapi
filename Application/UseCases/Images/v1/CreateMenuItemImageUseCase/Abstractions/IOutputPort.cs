@@ -3,6 +3,7 @@
     public interface IOutputPort
     {
         void MenuNotFound();
+        void RestaurantNotFound();
         void ImageSaved();
     }
 }

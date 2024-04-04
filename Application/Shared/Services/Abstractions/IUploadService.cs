@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Application.UseCases.Images.v1.UploadService.Services.Abstractions
+namespace Application.Shared.Services.Abstractions
 {
     public interface IUploadService
     {

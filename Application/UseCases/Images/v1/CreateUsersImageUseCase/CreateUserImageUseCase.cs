@@ -2,7 +2,6 @@
 using Application.Shared.Services.Abstractions;
 using Application.UseCases.Images.v1.CreateUsersImageUseCase.Abstractions;
 using Application.UseCases.Images.v1.CreateUsersImageUseCase.Services.Repositories.Abstractions;
-using Application.UseCases.Images.v1.UploadService.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateUsersImageUseCase

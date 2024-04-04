@@ -8,7 +8,9 @@ namespace Application.Shared.Entities
         public string Name { get; set; } = string.Empty;
         public string Path { get; set; } = string.Empty;
         public string Extension { get; set; } = string.Empty;
+        public string FullNamePath { get; set; } = string.Empty;
 
+        public Guid MenuItemId { get; set; }
         public MenuItem MenuItem { get; set; } = null!;
     }
 }

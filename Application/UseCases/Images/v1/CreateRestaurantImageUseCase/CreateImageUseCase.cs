@@ -2,7 +2,6 @@
 using Application.Shared.Services.Abstractions;
 using Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Abstractions;
 using Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services.Repositories.Abstractions;
-using Application.UseCases.Images.v1.UploadService.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
@@ -25,7 +24,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
 
             await AddImages(restaurant, filesInfo, cancellationToken);
 
-            _outputPort!.ImagesSaved(filesInfo);
+            _outputPort!.ImagesSaved();
         }
 
         private async Task AddImages(Restaurant restaurant, IEnumerable<FileInfo> fileInfos,
@@ -37,10 +36,11 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
                 {
                     Extension = file.Extension,
                     Name = file.Name,
-                    Path = file.FullName
+                    Path = file.ToString(),
+                    FullNamePath = file.FullName
                 });
+                restaurant.ProfileImage = file.ToString();
             }
-
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

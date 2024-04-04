@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Images.v1.CreateMenuItemImageUseCase
 {
-    [Route("api/v{version:apiVersion}/[controller]/{restaurantId:guid}/menu-items/{id:guid}/upload-images")]
+    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/menu-items/{menuItemId:guid}/upload-images")]
     [ApiVersion("1.0")]
     [ApiController]
     public class RestaurantsController(ICreateMenuItemImage useCase) : ControllerBase, IOutputPort
@@ -12,14 +12,16 @@ namespace Menu_WebApi.Controllers.Images.v1.CreateMenuItemImageUseCase
         private IActionResult? _viewModel;
 
         [HttpPost]
-        public async Task<IActionResult> Post(Guid id, Guid restaurantId, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
+        public async Task<IActionResult> Post(Guid id, Guid menuItemId, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(id, files, cancellationToken);
+            await useCase.ExecuteAsync(id, menuItemId, files, cancellationToken);
             return _viewModel!;
         }
 
         void IOutputPort.MenuNotFound() => _viewModel = NotFound(new NotFoundError("Menu não encontrado", HttpContext));
+
+        void IOutputPort.RestaurantNotFound() => _viewModel = NotFound(new NotFoundError("Restaurante não encontrado", HttpContext));
 
         void IOutputPort.ImageSaved() => _viewModel = Created();
     }

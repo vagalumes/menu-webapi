@@ -1,8 +1,8 @@
-﻿using Application.UseCases.Images.v1.UploadService.Services.Abstractions;
+﻿using Application.Shared.Services.Abstractions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.UseCases.Images.v1.UploadService
+namespace Application.Shared.Services
 {
     public class UploadService(IHostingEnvironment hostingEnvironment) : IUploadService
     {
@@ -18,8 +18,9 @@ namespace Application.UseCases.Images.v1.UploadService
 
                 var newFileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
                 var newFilePath = Path.Combine(imagesPath, newFileName);
+                var teste = Path.Combine("images", imagePath, newFileName);
                 await file.CopyToAsync(new FileStream(newFilePath, FileMode.CreateNew), cancellationToken);
-                newFilesName.Add(new FileInfo(newFileName));
+                newFilesName.Add(new FileInfo(teste));
             }
 
             return newFilesName;

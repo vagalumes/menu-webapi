@@ -1,4 +1,3 @@
-using Cardapio_webapi.Modules;
 using Menu_WebApi.Modules;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System.Globalization;
@@ -9,7 +8,7 @@ CultureInfo.CurrentCulture = new CultureInfo("en-US");
 CultureInfo.CurrentUICulture = new CultureInfo("en-US");
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.WebHost.UseWebRoot("wwwroot");
 builder.Services.ConfigureDataBase(builder.Configuration);
 builder.Services.AddUseCases(builder.Configuration);
 builder.Services.AddApiVersion();
@@ -33,7 +32,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    _ = app.ConfigureSwaggerUI(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
+    _ = app.ConfigureSwaggerUi(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
 }
 
 app.UseHttpsRedirection();

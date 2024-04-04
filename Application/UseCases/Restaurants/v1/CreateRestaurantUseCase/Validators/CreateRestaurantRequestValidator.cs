@@ -23,7 +23,7 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Validators
 
             RuleFor(r => r.Address).SetValidator(new CreateRestaurantAddressValidator());
 
-            RuleFor(r => r.Information).SetValidator(new CreateRestaurantInformationRequestValidator());
+            //RuleFor(r => r.Information).SetValidator(new CreateRestaurantInformationRequestValidator());
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Application.Shared.Entities
         public string Name { get; set; } = string.Empty;
         public string Path { get; set; } = string.Empty;
         public string Extension { get; set; } = string.Empty;
-        public bool Active { get; set; }
+        public string FullNamePath { get; set; } = string.Empty;
+        public Guid RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; } = null!;
     }
 }

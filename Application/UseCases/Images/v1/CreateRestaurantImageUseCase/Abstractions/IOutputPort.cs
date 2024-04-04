@@ -2,7 +2,7 @@
 {
     public interface IOutputPort
     {
-        void ImagesSaved(IEnumerable<FileInfo> filesInfos);
+        void ImagesSaved();
         void RestaurantNotFound();
     }
 }

@@ -7,7 +7,11 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Rep
 {
     public class ImageRepository(AppDbContext dbContext) : IImageRepository
     {
-        public async Task<MenuItem?> GetMenuItem(Guid id, CancellationToken cancellationToken) =>
-            await dbContext.MenuItem.FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
+        public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken) =>
+            await dbContext.Restaurants.FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+
+        public async Task<MenuItem?> GetMenuItem(Guid menuItemId, CancellationToken cancellationToken) =>
+            await dbContext.MenuItem.FirstOrDefaultAsync(m => m.Id == menuItemId, cancellationToken);
+
     }
 }

@@ -12,6 +12,7 @@ namespace Application.Shared.Entities
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Cnpj { get; set; } = string.Empty;
+        public string ProfileImage { get; set; } = string.Empty;
         public Information? Information { get; set; }
         public Address Address { get; set; } = null!;
         public ICollection<MenuItem> MenuItems { get; set; } = [];
@@ -21,7 +22,7 @@ namespace Application.Shared.Entities
         {
             Name = request.Name;
             Cnpj = request.Cnpj;
-            Information = new Information(request.Information);
+            //Information = new Information(request.Information);
         }
 
         public void Update(UpdateRestaurantRequest request) => Name = request.Name ?? Name;

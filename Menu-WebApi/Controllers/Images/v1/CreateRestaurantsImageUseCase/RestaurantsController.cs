@@ -20,7 +20,7 @@ namespace Menu_WebApi.Controllers.Images.v1.CreateRestaurantsImageUseCase
             return _viewModel!;
         }
 
-        void IOutputPort.ImagesSaved(IEnumerable<FileInfo> filesInfos) => _viewModel = Created($"api/v1/restaurant/upload-image/{filesInfos.FirstOrDefault().DirectoryName}", filesInfos);
+        void IOutputPort.ImagesSaved() => _viewModel = Ok();
 
         void IOutputPort.RestaurantNotFound() => _viewModel = NotFound();
     }

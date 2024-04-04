@@ -1,7 +1,6 @@
 ﻿using Application.Shared.Models.Request;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
 using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
