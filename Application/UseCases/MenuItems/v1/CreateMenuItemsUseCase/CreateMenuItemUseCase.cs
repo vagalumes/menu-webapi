@@ -21,7 +21,7 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
                 return;
             }
 
-            var menuItem = await SaveMenuItem(request, restaurant!, cancellationToken);
+            var menuItem = await SaveMenuItem(request, restaurant, cancellationToken);
             _outputPort!.MenuItemsCreated(menuItem);
         }
 

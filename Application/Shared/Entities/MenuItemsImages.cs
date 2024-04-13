@@ -2,7 +2,7 @@
 
 namespace Application.Shared.Entities
 {
-    public class MenuItemsImages() : IImage
+    public class MenuItemsImages : IImage
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;

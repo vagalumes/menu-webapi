@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.Shared.Entities
 {
-    public class RestaurantsImages() : IImage
+    public class RestaurantsImages : IImage
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

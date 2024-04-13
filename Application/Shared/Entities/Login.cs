@@ -25,8 +25,8 @@ namespace Application.Shared.Entities
 
         internal void Update(LoginRequest request)
         {
-            Access = request.Access ?? Access;
-            Password = request.Password ?? Password;
+            Access = request.Access;
+            Password = request.Password;
         }
     }
 }

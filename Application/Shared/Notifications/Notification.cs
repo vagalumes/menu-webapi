@@ -4,22 +4,24 @@ namespace Application.Shared.Notifications
 {
     public sealed class Notification
     {
-        private readonly IDictionary<string, IList<string>> ErrorMessages = new Dictionary<string, IList<string>>();
+        private readonly Dictionary<string, IList<string>> _errorMessages = [];
 
-        public bool IsInvalid => ErrorMessages.Any();
+        public bool IsInvalid => _errorMessages.Count != 0;
 
-        public IDictionary<string, IList<string>> GetErrorMessages() => ErrorMessages;
+        public Dictionary<string, IList<string>> GetErrorMessages() => _errorMessages;
 
         public void AddErrorMessage(string key, string message)
         {
-            if (!ErrorMessages.ContainsKey(key))
+            if (!_errorMessages.TryGetValue(key, out var value))
             {
-                ErrorMessages[key] = new List<string>();
+                value = new List<string>();
+                _errorMessages[key] = value;
             }
-            ErrorMessages[key].Add(message);
+
+            value.Add(message);
         }
 
-        public override string ToString() => string.Join(' ', ErrorMessages.SelectMany(x => x.Value));
+        public override string ToString() => string.Join(' ', _errorMessages.SelectMany(x => x.Value));
 
         public void AddErrorMessages(ValidationResult result)
         {

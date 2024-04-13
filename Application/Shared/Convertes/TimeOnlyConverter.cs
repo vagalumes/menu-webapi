@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Application.Shared.Convertes
 {
-    public class TimeOnlyConverter() : JsonConverter<TimeOnly>
+    public class TimeOnlyConverter : JsonConverter<TimeOnly>
     {
         private const string TimeFormat = "HH:mm:ss.FFFFFFF";
 

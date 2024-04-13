@@ -1,6 +1,4 @@
-﻿using Application.Shared.Entities;
-
-namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models
+﻿namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models
 {
     public class UpdateAddressRequest
     {

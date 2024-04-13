@@ -17,10 +17,10 @@ namespace Application.UseCases.Users.v1.CreateUserUseCase
 
         public async Task ExecuteAsync(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var checkUser = repository.UserExists(request.CPF);
+            var checkUser = repository.UserExists(request.Cpf);
 
             if (checkUser)
-                notification.AddErrorMessage(nameof(request.CPF), "Cpf já cadastrado");
+                notification.AddErrorMessage(nameof(request.Cpf), "Cpf já cadastrado");
 
             if (notification.IsInvalid)
             {

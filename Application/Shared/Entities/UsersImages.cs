@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.Shared.Entities
 {
-    public class UsersImages() : IImage
+    public class UsersImages : IImage
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,6 +16,6 @@ namespace Application.Shared.Entities
         public string FullNamePath { get; set; } = string.Empty;
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public User User { get; set; } = null!;
     }
 }

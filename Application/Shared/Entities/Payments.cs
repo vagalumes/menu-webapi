@@ -16,13 +16,13 @@ namespace Application.Shared.Entities
 
         public Payments(PaymentRequest request) => TypePayment = request.TypePayments;
 
-        public Payments(PaymentRequest? request, Payments payments) => TypePayment = request!.TypePayments ?? payments.TypePayment;
+        public Payments(PaymentRequest? request, Payments payments) => TypePayment = request!.TypePayments;
 
         public Payments() { }
 
         internal void Update(PaymentRequest payments)
         {
-            TypePayment = payments.TypePayments ?? TypePayment;
+            TypePayment = payments.TypePayments;
         }
     }
 }
