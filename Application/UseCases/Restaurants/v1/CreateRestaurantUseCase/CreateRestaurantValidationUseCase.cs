@@ -1,12 +1,11 @@
 ﻿using Application.Shared.Notifications;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
-using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repositories.Abstractions;
 using FluentValidation;
 
 namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 {
-    public class CreateRestaurantValidationUseCase(IRestaurantRepository repository, ICreateRestaurantUseCase useCase, IValidator<CreateRestaurantRequest> validator, Notification notification) : ICreateRestaurantUseCase
+    public class CreateRestaurantValidationUseCase(ICreateRestaurantUseCase useCase, IValidator<CreateRestaurantRequest> validator, Notification notification) : ICreateRestaurantUseCase
     {
         private IOutputPort? _outputPort;
 

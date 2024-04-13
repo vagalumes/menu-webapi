@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
+using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models;
 
 namespace Application.Shared.Entities
 {
@@ -18,6 +19,16 @@ namespace Application.Shared.Entities
         {
             Description = informationRequest.Description;
             Schedules = informationRequest.Schedule.Select(x => new Schedule(x.Day, x.Start, x.End)).ToList();
+        }
+
+        public void Update(UpdateInformationRequest? information)
+        {
+            Description = information?.Description;
+
+            if (information?.Schedule is null) 
+                return;
+
+            Schedules = information.Schedule.Select(s => new Schedule(s.Day, s.Start, s.End)).ToList();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Application.Shared.Entities;
-using Application.Shared.Services.Abstractions;
+﻿using Application.Shared.Services.Abstractions;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Models;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Services.Repositories.Abstractions;
@@ -23,6 +22,7 @@ namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase
             }
 
             restaurant.Update(request);
+            repository.UpdateRestaurant(restaurant);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

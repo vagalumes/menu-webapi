@@ -14,6 +14,14 @@ namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
 
         public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
         {
+            var restaurantExists = await repository.RestaurantExists(request.Cnpj);
+
+            if(restaurantExists)
+            {
+                _outputPort!.RestaurantAlreadyExists();
+                return;
+            }
+
             await SaveRestaurant(request, cancellationToken);
 
             _outputPort!.RestaurantCreated();

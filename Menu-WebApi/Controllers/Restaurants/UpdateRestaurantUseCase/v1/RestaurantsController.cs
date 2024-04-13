@@ -23,7 +23,7 @@ namespace Menu_WebApi.Controllers.Restaurants.UpdateRestaurantUseCase.v1
 
         void IOutputPort.InvalidRequest() => _view = BadRequest(new ValidationError(notification, HttpContext));
 
-        void IOutputPort.RestaurantNotFound() => _view = NotFound(new NotFoundError("Restaurant não encontrado", HttpContext));
+        void IOutputPort.RestaurantNotFound() => _view = NotFound(new NotFoundError("Restaurante não encontrado", HttpContext));
 
         void IOutputPort.RestaurantUpdated() => _view = NoContent();
     }

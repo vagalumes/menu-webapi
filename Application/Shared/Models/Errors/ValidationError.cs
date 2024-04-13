@@ -4,19 +4,11 @@ using System.Net;
 
 namespace Application.Shared.Models.Errors
 {
-    public class ValidationError
+    public class ValidationError(Notification notification, HttpContext context)
     {
-        public ValidationError(Notification notification, HttpContext context)
-        {
-            Title = "Bad request";
-            Detail = notification.GetErrorMessages();
-            Instance = context.TraceIdentifier;
-            Status = (int)HttpStatusCode.BadRequest;
-        }
-
-        public string Title { get; set; }
-        public IDictionary<string, IList<string>>? Detail { get; set; }
-        public string Instance { get; set; }
-        public int Status { get; set; }
+        public string Title { get; set; } = "Bad request";
+        public IDictionary<string, IList<string>>? Detail { get; set; } = notification.GetErrorMessages();
+        public string Instance { get; set; } = context.TraceIdentifier;
+        public int Status { get; set; } = (int)HttpStatusCode.BadRequest;
     }
 }

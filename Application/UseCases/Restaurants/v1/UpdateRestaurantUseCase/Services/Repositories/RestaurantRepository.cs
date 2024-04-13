@@ -12,10 +12,10 @@ namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Services.R
             return await dbContext.Restaurants
                                                .Include(r => r.Address)
                                                .Include(r => r.Information)
+                                                    .ThenInclude(i => i.Schedules)
                                                .FirstOrDefaultAsync(r => r.Id == restaurantId, cancellationToken);
         }
 
-        public async Task<bool> RestaurantExists(Guid? restaurantId, CancellationToken cancellationToken) =>
-            await dbContext.Restaurants.AnyAsync(r => r.Id == restaurantId, cancellationToken: cancellationToken);
+        public void UpdateRestaurant(Restaurant restaurant) => dbContext.Restaurants.Update(restaurant);
     }
 }

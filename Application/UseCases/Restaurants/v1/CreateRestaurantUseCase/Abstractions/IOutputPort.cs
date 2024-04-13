@@ -3,6 +3,7 @@
     public interface IOutputPort
     {
         void InvalidRequest();
+        void RestaurantAlreadyExists();
         void RestaurantCreated();
     }
 }

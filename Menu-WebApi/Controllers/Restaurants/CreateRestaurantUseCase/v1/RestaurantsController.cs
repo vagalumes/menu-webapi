@@ -23,6 +23,8 @@ namespace Menu_WebApi.Controllers.Restaurants.CreateRestaurantUseCase.v1
 
         void IOutputPort.InvalidRequest() => _viewModel = NotFound(new ValidationError(notification, HttpContext));
 
+        void IOutputPort.RestaurantAlreadyExists() => _viewModel = Conflict(new ConflictError("Já existe um restaurante com este CNPJ.", HttpContext));
+
         void IOutputPort.RestaurantCreated() => _viewModel = Created();
     }
 }
