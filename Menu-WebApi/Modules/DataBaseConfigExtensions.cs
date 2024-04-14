@@ -1,4 +1,5 @@
-﻿using Application.Shared.Context;
+﻿using System.Formats.Asn1;
+using Application.Shared.Context;
 using Application.Shared.Services;
 using Application.Shared.Services.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,16 @@ namespace Menu_WebApi.Modules
                            .EnableSensitiveDataLogging()
                            .EnableDetailedErrors())
                            .AddScoped<IUnitOfWork, UnitOfWork>();
+        }
+
+        public static IServiceProvider CreateDatabase(this IServiceProvider services)
+        {
+            using var scope = services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+            _ = context.Database.EnsureCreated();
+
+            return services;
         }
     }
 }

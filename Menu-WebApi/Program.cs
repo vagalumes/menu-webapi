@@ -8,16 +8,20 @@ using Application.Shared.Convertes;
 CultureInfo.CurrentCulture = new CultureInfo("en-US");
 CultureInfo.CurrentUICulture = new CultureInfo("en-US");
 
-var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseWebRoot("wwwroot");
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    WebRootPath = "wwwroot",
+    Args = args
+});
+builder.Services.AddHealthChecks();
 builder.Services.ConfigureDataBase(builder.Configuration);
 builder.Services.AddUseCases(builder.Configuration);
 builder.Services.AddApiVersion();
 builder.Services.AddCors(opt =>
 {
     opt.AddDefaultPolicy(p => p.AllowAnyHeader()
-                               .AllowAnyOrigin()
-                               .AllowAnyMethod()
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
     );
 });
 builder.Services.AddControllers()
@@ -36,8 +40,12 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
+{
     _ = app.ConfigureSwaggerUi(app.Services.GetRequiredService<IApiVersionDescriptionProvider>());
+    app.Services.CreateDatabase();
+}
 
+app.MapHealthChecks("/healthcheck");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors();
