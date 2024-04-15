@@ -1,10 +1,9 @@
 ﻿namespace Application.Shared.Interfaces
 {
-    public interface IImage
+    public class Image
     {
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public string Extension { get; set; }
-        public string FullNamePath { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Path { get; set; } = string.Empty;
+        public string Extension { get; set; } = string.Empty;
     }
 }

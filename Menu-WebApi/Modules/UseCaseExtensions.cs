@@ -3,6 +3,7 @@ using Application.UseCases.Images.v1.CreateMenuItemImageUseCase;
 using Application.UseCases.Images.v1.CreateRestaurantImageUseCase;
 using Application.UseCases.Images.v1.CreateUsersImageUseCase;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase;
+using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.GetRestaurantUseCase;
@@ -35,7 +36,9 @@ namespace Menu_WebApi.Modules
                     .AddDeleteUserUseCase()
                     .AddUpdateUserUseCase();
 
-        private static IServiceCollection AddMenuItemsUseCase(this IServiceCollection services) => services.AddMenuItemUseCase();
+        private static IServiceCollection AddMenuItemsUseCase(this IServiceCollection services) =>
+            services.AddMenuItemUseCase()
+                    .AddGetMenuItem();
 
         private static IServiceCollection AddImageUseCase(this IServiceCollection services) =>
             services.AddCreateRestaurantImageUseCase()

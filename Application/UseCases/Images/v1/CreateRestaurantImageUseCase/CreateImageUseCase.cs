@@ -36,8 +36,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
                 {
                     Extension = file.Extension,
                     Name = file.Name,
-                    Path = file.ToString(),
-                    FullNamePath = file.FullName
+                    Path = file.ToString()
                 });
                 restaurant.ProfileImage = file.ToString();
             }

@@ -4,15 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.Shared.Entities
 {
-    public class RestaurantsImages : IImage
+    public class RestaurantsImages : Image
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Path { get; set; } = string.Empty;
-        public string Extension { get; set; } = string.Empty;
-        public string FullNamePath { get; set; } = string.Empty;
         public Guid RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; } = null!;
     }
