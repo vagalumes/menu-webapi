@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Services.Repositories.Abstractions
+namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Services.Repositories.Abstractions
 {
     public interface IMenuItemRepository
     {

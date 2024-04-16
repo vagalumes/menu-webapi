@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Services
 {
-    public static class MenuItemServicesDependencyInjection
+    public static class MenuItemsServicesDependencyInjection
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services) =>
-            services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+        public static IServiceCollection AddDependencie(this IServiceCollection services) =>
+            services.AddScoped<IMenuItemsRepository, GetMenuItemsRepository>();
     }
 }

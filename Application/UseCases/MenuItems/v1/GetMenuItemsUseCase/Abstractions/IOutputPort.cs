@@ -1,11 +1,10 @@
-﻿using Application.Shared.Entities;
+﻿using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Models;
 
 namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Abstractions
 {
     public interface IOutputPort
     {
-        void MenuItemNotFound();
-        void MenuItemFound(MenuItem menuItem);
         void RestaurantNotFound();
+        void MenuItemsFound(IEnumerable<MenuItemsResponse> menuItems);
     }
 }

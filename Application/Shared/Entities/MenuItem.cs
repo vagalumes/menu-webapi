@@ -22,7 +22,6 @@ namespace Application.Shared.Entities
             Name = request.Name;
             Description = request.Description;
             Price = request.Price;
-
             Restaurant = restaurant;
         }
     }

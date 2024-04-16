@@ -1,7 +1,8 @@
-﻿using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Abstractions;
-using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Services.Repositories.Abstractions;
+﻿using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Abstractions;
+using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Models;
+using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase
+namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase
 {
     public class GetMenuItemUseCase(IMenuItemRepository repository) : IGetMenuItemUseCase
     {
@@ -25,7 +26,7 @@ namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase
                 return;
             }
 
-            _outputPort!.MenuItemFound(menuItem);
+            _outputPort!.MenuItemFound(new MenuItemResponse(menuItem));
         }
     }
 }

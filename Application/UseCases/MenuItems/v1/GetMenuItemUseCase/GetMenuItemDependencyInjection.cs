@@ -1,8 +1,8 @@
-﻿using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Abstractions;
-using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Services;
+﻿using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Abstractions;
+using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase
+namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase
 {
     public static class GetMenuItemDependencyInjection
     {

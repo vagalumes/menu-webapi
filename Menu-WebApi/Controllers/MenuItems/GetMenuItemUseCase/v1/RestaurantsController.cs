@@ -1,6 +1,7 @@
 ﻿using Application.Shared.Entities;
 using Application.Shared.Models.Errors;
-using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Abstractions;
+using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Abstractions;
+using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.MenuItems.GetMenuItemUseCase.v1
@@ -23,7 +24,7 @@ namespace Menu_WebApi.Controllers.MenuItems.GetMenuItemUseCase.v1
         void IOutputPort.MenuItemNotFound() =>
             _viewModel = NotFound(new NotFoundError("Item não localizado", HttpContext));
 
-        void IOutputPort.MenuItemFound(MenuItem menuItem) => _viewModel = Ok(menuItem);
+        void IOutputPort.MenuItemFound(MenuItemResponse menuItem) => _viewModel = Ok(menuItem);
 
         void IOutputPort.RestaurantNotFound() =>
             _viewModel = NotFound(new NotFoundError("Restaurante não localizado", HttpContext));
