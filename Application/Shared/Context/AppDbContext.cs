@@ -5,17 +5,17 @@ namespace Application.Shared.Context
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public required DbSet<Address> Address { get; set; }
-        public required DbSet<Information> Information { get; set; }
-        public required DbSet<Login> Access { get; set; }
-        public required DbSet<Payments> Payments { get; set; }
-        public required DbSet<Restaurant> Restaurants { get; set; }
-        public required DbSet<Schedule> Schedules { get; set; }
-        public required DbSet<User> Users { get; set; }
-        public required DbSet<MenuItem> MenuItem { get; set; }
-        public required DbSet<UsersImages> UsersImages { get; set; }
-        public required DbSet<RestaurantsImages> RestaurantsImages { get; set; }
-        public required DbSet<MenuItemsImages> MenuItemsImages { get; set; }
+        public required DbSet<Address> Address { get; init; }
+        public required DbSet<Information> Information { get; init; }
+        public required DbSet<Login> Access { get; init; }
+        public required DbSet<Payments> Payments { get; init; }
+        public required DbSet<Restaurant> Restaurants { get; init; }
+        public required DbSet<Schedule> Schedules { get; init; }
+        public required DbSet<User> Users { get; init; }
+        public required DbSet<MenuItem> MenuItem { get; init; }
+        public required DbSet<UsersImages> UsersImages { get; init; }
+        public required DbSet<RestaurantsImages> RestaurantsImages { get; init; }
+        public required DbSet<MenuItemsImages> MenuItemsImages { get; init; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
