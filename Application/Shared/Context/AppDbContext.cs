@@ -20,49 +20,52 @@ namespace Application.Shared.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Information)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(r => r.Information)
+                .WithOne(re => re.Restaurant)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasOne(r => r.Address)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(r => r.Address)
+                .WithOne(re => re.Restaurant)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Address>()
-                       .HasOne(a => a.Restaurant)
-                       .WithOne(re => re.Address)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(a => a.Restaurant)
+                .WithOne(re => re.Address)
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasMany(r => r.Images)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(r => r.Images)
+                .WithOne(re => re.Restaurant)
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Restaurant>()
-                       .HasMany(r => r.MenuItems)
-                       .WithOne(re => re.Restaurant)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(r => r.MenuItems)
+                .WithOne(re => re.Restaurant)
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<Information>()
-                       .HasMany(i => i.Schedules)
-                       .WithOne(s => s.Information)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(i => i.Schedules)
+                .WithOne(s => s.Information)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<MenuItem>()
-                       .HasMany(m => m.Images)
-                       .WithOne(me => me.MenuItem)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(m => m.Images)
+                .WithOne(me => me.MenuItem)
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<User>()
-                       .HasOne(u => u.Login)
-                       .WithOne(us => us.User)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(u => u.Login)
+                .WithOne(us => us.User)
+                .OnDelete(DeleteBehavior.Cascade);
 
             _ = modelBuilder.Entity<User>()
-                       .HasMany(u => u.Images)
-                       .WithOne(us => us.User)
-                       .OnDelete(DeleteBehavior.Cascade);
+                .HasMany(u => u.Images)
+                .WithOne(us => us.User)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

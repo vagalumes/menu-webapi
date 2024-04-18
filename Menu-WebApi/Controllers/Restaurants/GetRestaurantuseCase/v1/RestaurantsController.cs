@@ -13,6 +13,7 @@ namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
         private IActionResult? _viewModel;
 
         [HttpGet("{id:guid}")]
+        [ProducesResponseType(typeof(GetRestaurantModel), 200)]
         public async Task<IActionResult> GetRestaurant(Guid id, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
