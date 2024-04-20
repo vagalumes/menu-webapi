@@ -9,6 +9,7 @@ public class RestaurantSeeder(SqlConnection connection, Faker faker)
 {
     public async Task InsertRestaurant()
     {
+        
         var restaurantId = await connection.QuerySingleAsync<Guid>(SqlConstants.InsertRestaurant,
             new
             {
@@ -23,6 +24,11 @@ public class RestaurantSeeder(SqlConnection connection, Faker faker)
         for (var i = 0; i < 6; i++)
         {
             await InsertSchedule(informationId, i);
+        }
+        var menuItemsSeeder = new MenuItemsSeeder(connection: connection, faker: faker);
+        for (var i = 0; i < 4; i++)
+        {
+            await menuItemsSeeder.InsertMenuItem(restaurantId);
         }
     }
 
