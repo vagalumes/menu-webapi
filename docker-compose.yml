@@ -46,6 +46,27 @@
       - C:\Docker\Volumes\sql-server\data:/var/opt/mssql/data
       - C:\Docker\Volumes\sql-server\log:/var/opt/mssql/log
       - C:\Docker\Volumes\sql-server\secrets:/var/opt/mssql/secrets
+        
+  keycloack:
+    container_name: keycloack
+    image: quay.io/keycloak/keycloak:24.0.3
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=P@ssword
+      - KC_HTTP_PORT=8080
+      - KC_HTTPS_PORT=8433
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3001/health/ready" ]
+      interval: 15s
+      timeout: 2s
+      retries: 15
+    command:
+      [ "start-dev"]
+    ports:
+      - "3000:8080"
+      - "3001:8433"  
+    networks:
+      - menu-network
     
 networks:
   menu-network:
