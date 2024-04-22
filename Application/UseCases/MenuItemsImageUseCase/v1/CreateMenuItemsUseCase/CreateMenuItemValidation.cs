@@ -1,8 +1,8 @@
 ﻿using Application.Shared.Notifications;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
 
-namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
+namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase
 {
     public class CreateMenuItemValidation(ICreateMenuItemsUseCase useCase, Notification notification) : ICreateMenuItemsUseCase
     {

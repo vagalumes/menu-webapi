@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Context;
 using Application.Shared.Entities;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Repositories
+namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories
 {
     public class MenuItemRepository(AppDbContext dbContext) : IMenuItemRepository
     {

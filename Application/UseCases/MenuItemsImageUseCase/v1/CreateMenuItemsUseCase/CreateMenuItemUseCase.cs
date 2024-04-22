@@ -1,10 +1,10 @@
 ﻿using Application.Shared.Entities;
 using Application.Shared.Services.Abstractions;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
-using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
+namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase
 {
     public class CreateMenuItemUseCase(IMenuItemRepository repository, IUnitOfWork unitOfWork) : ICreateMenuItemsUseCase
     {

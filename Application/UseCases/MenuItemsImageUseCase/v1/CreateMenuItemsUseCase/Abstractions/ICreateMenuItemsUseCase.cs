@@ -1,6 +1,6 @@
-﻿using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
+﻿using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
 
-namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions
+namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions
 {
     public interface ICreateMenuItemsUseCase
     {

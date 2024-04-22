@@ -26,7 +26,7 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
                 return;
             }
 
-            var filesInfo = await service.UploadFiles($"menuItem-{id}", files, cancellationToken);
+            var filesInfo = await service.UploadFiles($"menuItem-{menuItemId}", files, cancellationToken);
             await AddImages(menu, filesInfo, cancellationToken);
             _outputPort!.ImageSaved();
         }
@@ -40,7 +40,7 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
                 {
                     Extension = file.Extension,
                     Name = file.Name,
-                    Path = file.FullName
+                    Path = file.ToString()
                 });
             }
 

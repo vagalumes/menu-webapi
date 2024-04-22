@@ -6,7 +6,7 @@ namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
 {
     public static class CreateMenuItemImageDependencyInjection
     {
-        public static IServiceCollection AddMenuItemsImageUseCase(this IServiceCollection services)
+        public static IServiceCollection AddCreateMenuItemsImageUseCase(this IServiceCollection services)
         {
             return services.AddImageDependencies()
                            .AddScoped<ICreateMenuItemImage, CreateMenuItemImageUseCase>();
