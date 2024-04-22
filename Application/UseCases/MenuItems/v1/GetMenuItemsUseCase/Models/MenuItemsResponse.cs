@@ -7,7 +7,7 @@ namespace Application.UseCases.MenuItems.v1.GetMenuItemsUseCase.Models
         public Guid Id { get; set; } = menuItem.Id;
         public string Name { get; set; } = menuItem.Name;
         public string Description { get; set; } = menuItem.Description;
-        public double Price { get; set; } = menuItem.Price;
+        public decimal Price { get; set; } = menuItem.Price;
 
         public IEnumerable<MenuItemsImagesResponse> Images { get; set; } = menuItem.Images.Select(item => new MenuItemsImagesResponse(item));
     }

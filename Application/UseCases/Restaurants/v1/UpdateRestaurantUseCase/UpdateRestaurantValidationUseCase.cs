@@ -5,7 +5,10 @@ using FluentValidation;
 
 namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase
 {
-    public class UpdateRestaurantValidationUseCase(IValidator<UpdateRestaurantRequest> validator, IUpdateRestaurantUseCase useCase, Notification notification) : IUpdateRestaurantUseCase
+    public class UpdateRestaurantValidationUseCase(
+        IValidator<UpdateRestaurantRequest> validator,
+        IUpdateRestaurantUseCase useCase,
+        Notification notification) : IUpdateRestaurantUseCase
     {
         private IOutputPort? _outputPort;
 
