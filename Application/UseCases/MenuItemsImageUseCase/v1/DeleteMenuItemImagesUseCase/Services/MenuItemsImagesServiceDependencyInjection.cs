@@ -10,5 +10,5 @@ public static class MenuItemsImagesServiceDependencyInjection
 {
     public static IServiceCollection AddDependencies(this IServiceCollection services) =>
         services.AddScoped<IMenuItemsImagesRepository, MenuItemsImagesRepository>()
-                .AddScoped<IDeleteImagesService, DeleteImagesService>();
+                .AddScoped<IImagesService, ImagesService>();
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateUsersImageUseCase
 {
-    public class CreateUserImageUseCase(IImageRepository repository, IUploadService service, IUnitOfWork unitOfWork) : ICreateUserImageUseCase
+    public class CreateUserImageUseCase(IImageRepository repository, IImagesService service, IUnitOfWork unitOfWork) : ICreateUserImageUseCase
     {
         private IOutputPort? _outputPort;
 

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
 {
-    public class CreateMenuItemImageUseCase(IImageRepository repository, IUploadService service, IUnitOfWork unitOfWork) : ICreateMenuItemImage
+    public class CreateMenuItemImageUseCase(IImageRepository repository, IImagesService service, IUnitOfWork unitOfWork) : ICreateMenuItemImage
     {
         private IOutputPort? _outputPort;
         public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;

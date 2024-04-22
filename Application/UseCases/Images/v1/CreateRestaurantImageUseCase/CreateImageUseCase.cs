@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
 {
-    public class CreateRestaurantImageUseCase(IImageRepository imageRepository, IUploadService uploadService, IUnitOfWork unitOfWork) : ICreateImageUseCase
+    public class CreateRestaurantImageUseCase(IImageRepository imageRepository, IImagesService imagesService, IUnitOfWork unitOfWork) : ICreateImageUseCase
     {
         private IOutputPort? _outputPort;
         public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
@@ -20,7 +20,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase
                 return;
             }
 
-            var filesInfo = await uploadService.UploadFiles($"restaurant-{id}", files, cancellationToken);
+            var filesInfo = await imagesService.UploadFiles($"restaurant-{id}", files, cancellationToken);
 
             await AddImages(restaurant, filesInfo, cancellationToken);
 

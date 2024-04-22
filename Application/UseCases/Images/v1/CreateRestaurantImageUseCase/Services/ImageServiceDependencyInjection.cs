@@ -10,7 +10,7 @@ namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services
         public static IServiceCollection AddImageDependencies(this IServiceCollection services)
         {
             return services.AddScoped<IImageRepository, ImageRepository>()
-                .AddScoped<IUploadService, Shared.Services.UploadService>();
+                .AddScoped<IImagesService, Shared.Services.ImagesService>();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseC
 
 public class DeleteMenuItemsImageUseCase(
     IMenuItemsImagesRepository repository,
-    IDeleteImagesService service,
+    IImagesService service,
     IUnitOfWork unitOfWork)
     : IDeleteMenuItemImagesUseCase
 {
