@@ -10,10 +10,12 @@ namespace Application.UseCases.MenuItems.v1.UpdateMenuItemUseCase;
 
 public static class MenuItemDependencyInjection
 {
-    public static IServiceCollection AddUpdateMenuItemUseCase(this IServiceCollection service) =>
-        service.AddDependencies()
+    public static IServiceCollection AddUpdateMenuItemUseCase(this IServiceCollection service)
+    {
+        return service.AddDependencies()
             .AddNotifications()
             .AddScoped<IValidator<UpdateMenuItemRequest>, UpdateMenuItemRequestValidator>()
             .AddScoped<IUpdateMenuItemUseCase, UpdateMenuItemUseCase>()
             .Decorate<IUpdateMenuItemUseCase, UpdateMenuItemValidation>();
+    }
 }

@@ -1,9 +1,8 @@
-﻿namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Abstractions
+﻿namespace Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase.Abstractions;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void RestaurantUpdated();
-        void InvalidRequest();
-        void RestaurantNotFound();
-    }
+    void RestaurantUpdated();
+    void InvalidRequest();
+    void RestaurantNotFound();
 }

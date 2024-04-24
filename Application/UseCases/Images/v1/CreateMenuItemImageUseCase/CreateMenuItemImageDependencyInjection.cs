@@ -2,14 +2,13 @@
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase
+namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase;
+
+public static class CreateMenuItemImageDependencyInjection
 {
-    public static class CreateMenuItemImageDependencyInjection
+    public static IServiceCollection AddCreateMenuItemsImageUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddCreateMenuItemsImageUseCase(this IServiceCollection services)
-        {
-            return services.AddImageDependencies()
-                           .AddScoped<ICreateMenuItemImage, CreateMenuItemImageUseCase>();
-        }
+        return services.AddImageDependencies()
+            .AddScoped<ICreateMenuItemImage, CreateMenuItemImageUseCase>();
     }
 }

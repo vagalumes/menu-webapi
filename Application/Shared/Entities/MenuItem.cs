@@ -1,37 +1,36 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
 using Application.UseCases.MenuItems.v1.UpdateMenuItemUseCase.Models;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
 
-namespace Application.Shared.Entities
+namespace Application.Shared.Entities;
+
+public class MenuItem()
 {
-    public class MenuItem()
+    public MenuItem(CreateMenuItemsRequest request, Restaurant restaurant) : this()
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; init; }
+        Name = request.Name;
+        Description = request.Description;
+        Price = request.Price;
+        Restaurant = restaurant;
+    }
 
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public decimal Price { get; private set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid Id { get; init; }
 
-        public ICollection<MenuItemsImages> Images { get; init; } = [];
+    public string Name { get; set; } = null!;
+    public string Description { get; set; } = null!;
+    public decimal Price { get; private set; }
 
-        public Restaurant Restaurant { get; init; } = null!;
+    public ICollection<MenuItemsImages> Images { get; init; } = [];
 
-        public MenuItem(CreateMenuItemsRequest request, Restaurant restaurant) : this()
-        {
-            Name = request.Name;
-            Description = request.Description;
-            Price = request.Price;
-            Restaurant = restaurant;
-        }
+    public Restaurant Restaurant { get; init; } = null!;
 
-        public void Update(UpdateMenuItemRequest request)
-        {
-            Name = request.Name ?? Name;
-            Description = request.Description ?? Description;
-            Price = request.Price ?? Price;
-        }
+    public void Update(UpdateMenuItemRequest request)
+    {
+        Name = request.Name ?? Name;
+        Description = request.Description ?? Description;
+        Price = request.Price ?? Price;
     }
 }

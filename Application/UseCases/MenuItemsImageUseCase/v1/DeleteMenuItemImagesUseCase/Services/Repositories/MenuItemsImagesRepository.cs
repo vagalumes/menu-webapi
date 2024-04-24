@@ -7,8 +7,14 @@ namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseC
 
 public class MenuItemsImagesRepository(AppDbContext context) : IMenuItemsImagesRepository
 {
-    public void DeletedMenuItemImage(MenuItemsImages menuItemsImages) => context.Remove(menuItemsImages);
+    public void DeletedMenuItemImage(MenuItemsImages menuItemsImages)
+    {
+        context.Remove(menuItemsImages);
+    }
 
-    public async Task<MenuItem?> GetMenuItem(Guid id, CancellationToken cancellationToken) => await context.MenuItem
-        .Include(m => m.Images).FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
+    public async Task<MenuItem?> GetMenuItem(Guid id, CancellationToken cancellationToken)
+    {
+        return await context.MenuItem
+            .Include(m => m.Images).FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
+    }
 }

@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions
+﻿namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
+
+public interface IGetRestaurantUseCase
 {
-    public interface IGetRestaurantUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken);
 }

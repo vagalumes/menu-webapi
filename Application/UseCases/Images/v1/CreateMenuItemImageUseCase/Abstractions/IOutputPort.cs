@@ -1,9 +1,8 @@
-﻿namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Abstractions
+﻿namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Abstractions;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void MenuNotFound();
-        void RestaurantNotFound();
-        void ImageSaved();
-    }
+    void MenuNotFound();
+    void RestaurantNotFound();
+    void ImageSaved();
 }

@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
-namespace Application.Shared.Models.Errors
+namespace Application.Shared.Models.Errors;
+
+public class NotFoundError : ProblemDetails
 {
-    public class NotFoundError : ProblemDetails
+    public NotFoundError(string message, HttpContext context)
     {
-        public NotFoundError(string message, HttpContext context)
-        {
-            Title = "Not Found";
-            Detail = message;
-            Instance = context.TraceIdentifier;
-            Status = (int)HttpStatusCode.NotFound;
-        }
+        Title = "Not Found";
+        Detail = message;
+        Instance = context.TraceIdentifier;
+        Status = (int)HttpStatusCode.NotFound;
     }
 }

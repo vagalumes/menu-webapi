@@ -1,10 +1,9 @@
 ﻿using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 
-namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions
+namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions;
+
+public interface ICreateRestaurantUseCase
 {
-    public interface ICreateRestaurantUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken);
 }

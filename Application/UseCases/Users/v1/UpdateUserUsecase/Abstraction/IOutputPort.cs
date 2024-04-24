@@ -1,9 +1,8 @@
-﻿namespace Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction
+﻿namespace Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void UserNotFound();
-        void InvalidRequest();
-        void UserUpdated();
-    }
+    void UserNotFound();
+    void InvalidRequest();
+    void UserUpdated();
 }

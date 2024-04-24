@@ -3,11 +3,13 @@ using Application.Shared.Entities;
 using Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services.Repositories
+namespace Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Services.Repositories;
+
+public class ImageRepository(AppDbContext dbContext) : IImageRepository
 {
-    public class ImageRepository(AppDbContext dbContext) : IImageRepository
+    public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken)
     {
-        public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken) =>
-            await dbContext.Restaurants.Include(r => r.Images).FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+        return await dbContext.Restaurants.Include(r => r.Images)
+            .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
     }
 }

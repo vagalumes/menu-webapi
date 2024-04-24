@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.Users.v1.GetUserUseCase.Abstractions
+﻿namespace Application.UseCases.Users.v1.GetUserUseCase.Abstractions;
+
+public interface IGetUserUseCase
 {
-    public interface IGetUserUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(Guid userId, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(Guid userId, CancellationToken cancellationToken);
 }

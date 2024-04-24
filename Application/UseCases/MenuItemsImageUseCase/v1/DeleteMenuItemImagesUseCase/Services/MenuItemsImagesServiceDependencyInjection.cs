@@ -8,7 +8,9 @@ namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseC
 
 public static class MenuItemsImagesServiceDependencyInjection
 {
-    public static IServiceCollection AddDependencies(this IServiceCollection services) =>
-        services.AddScoped<IMenuItemsImagesRepository, MenuItemsImagesRepository>()
-                .AddScoped<IImagesService, ImagesService>();
+    public static IServiceCollection AddDependencies(this IServiceCollection services)
+    {
+        return services.AddScoped<IMenuItemsImagesRepository, MenuItemsImagesRepository>()
+            .AddScoped<IImagesService, ImagesService>();
+    }
 }

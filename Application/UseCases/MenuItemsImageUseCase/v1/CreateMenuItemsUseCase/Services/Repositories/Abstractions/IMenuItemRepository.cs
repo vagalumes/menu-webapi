@@ -1,11 +1,10 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions
-{
-    public interface IMenuItemRepository
-    {
-        Task<Restaurant?> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken);
+namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
 
-        Task CreateMenuItems(MenuItem menuItem, CancellationToken cancellationToken);
-    }
+public interface IMenuItemRepository
+{
+    Task<Restaurant?> GetRestaurant(Guid restaurantId, CancellationToken cancellationToken);
+
+    Task CreateMenuItems(MenuItem menuItem, CancellationToken cancellationToken);
 }

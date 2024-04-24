@@ -1,10 +1,9 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repositories.Abstractions
+namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repositories.Abstractions;
+
+public interface IRestaurantRepository
 {
-    public interface IRestaurantRepository
-    {
-        Task<bool> RestaurantExists(string cnpj);
-        Task CreateRestaurant(Restaurant restaurant, CancellationToken cancellationToken);
-    }
+    Task<bool> RestaurantExists(string cnpj);
+    Task CreateRestaurant(Restaurant restaurant, CancellationToken cancellationToken);
 }

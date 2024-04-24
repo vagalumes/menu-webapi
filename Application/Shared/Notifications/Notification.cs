@@ -1,37 +1,39 @@
 ﻿using FluentValidation.Results;
 
-namespace Application.Shared.Notifications
+namespace Application.Shared.Notifications;
+
+public sealed class Notification
 {
-    public sealed class Notification
+    private readonly Dictionary<string, IList<string>> _errorMessages = [];
+
+    public bool IsInvalid => _errorMessages.Count != 0;
+
+    public Dictionary<string, IList<string>> GetErrorMessages()
     {
-        private readonly Dictionary<string, IList<string>> _errorMessages = [];
+        return _errorMessages;
+    }
 
-        public bool IsInvalid => _errorMessages.Count != 0;
-
-        public Dictionary<string, IList<string>> GetErrorMessages() => _errorMessages;
-
-        public void AddErrorMessage(string key, string message)
+    public void AddErrorMessage(string key, string message)
+    {
+        if (!_errorMessages.TryGetValue(key, out var value))
         {
-            if (!_errorMessages.TryGetValue(key, out var value))
-            {
-                value = new List<string>();
-                _errorMessages[key] = value;
-            }
-
-            value.Add(message);
+            value = new List<string>();
+            _errorMessages[key] = value;
         }
 
-        public override string ToString() => string.Join(' ', _errorMessages.SelectMany(x => x.Value));
+        value.Add(message);
+    }
 
-        public void AddErrorMessages(ValidationResult result)
-        {
-            if (result.IsValid)
-                return;
+    public override string ToString()
+    {
+        return string.Join(' ', _errorMessages.SelectMany(x => x.Value));
+    }
 
-            foreach (var error in result.Errors)
-            {
-                AddErrorMessage(error.PropertyName, error.ErrorMessage);
-            }
-        }
+    public void AddErrorMessages(ValidationResult result)
+    {
+        if (result.IsValid)
+            return;
+
+        foreach (var error in result.Errors) AddErrorMessage(error.PropertyName, error.ErrorMessage);
     }
 }

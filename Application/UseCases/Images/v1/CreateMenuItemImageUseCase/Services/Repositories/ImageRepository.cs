@@ -3,15 +3,17 @@ using Application.Shared.Entities;
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Repositories
+namespace Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Services.Repositories;
+
+public class ImageRepository(AppDbContext dbContext) : IImageRepository
 {
-    public class ImageRepository(AppDbContext dbContext) : IImageRepository
+    public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken)
     {
-        public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken) =>
-            await dbContext.Restaurants.FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+        return await dbContext.Restaurants.FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+    }
 
-        public async Task<MenuItem?> GetMenuItem(Guid menuItemId, CancellationToken cancellationToken) =>
-            await dbContext.MenuItem.FirstOrDefaultAsync(m => m.Id == menuItemId, cancellationToken);
-
+    public async Task<MenuItem?> GetMenuItem(Guid menuItemId, CancellationToken cancellationToken)
+    {
+        return await dbContext.MenuItem.FirstOrDefaultAsync(m => m.Id == menuItemId, cancellationToken);
     }
 }

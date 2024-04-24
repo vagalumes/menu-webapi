@@ -3,32 +3,34 @@ using Application.UseCases.Users.v1.CreateUserUseCase.Abstractions;
 using Application.UseCases.Users.v1.CreateUserUseCase.Models;
 using Application.UseCases.Users.v1.CreateUserUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Users.v1.CreateUserUseCase
+namespace Application.UseCases.Users.v1.CreateUserUseCase;
+
+public class CreateUserValidationUseCase(
+    IUserRepository repository,
+    ICreateUsersUseCase useCase,
+    Notification notification) : ICreateUsersUseCase
 {
-    public class CreateUserValidationUseCase(IUserRepository repository, ICreateUsersUseCase useCase, Notification notification) : ICreateUsersUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+        useCase.SetOutputPort(outputPort);
+    }
 
-        public void SetOutputPort(IOutputPort outputPort)
+    public async Task ExecuteAsync(CreateUserRequest request, CancellationToken cancellationToken)
+    {
+        var checkUser = repository.UserExists(request.Cpf);
+
+        if (checkUser)
+            notification.AddErrorMessage(nameof(request.Cpf), "Cpf já cadastrado");
+
+        if (notification.IsInvalid)
         {
-            _outputPort = outputPort;
-            useCase.SetOutputPort(outputPort);
+            _outputPort!.InvalidRequest();
+            return;
         }
 
-        public async Task ExecuteAsync(CreateUserRequest request, CancellationToken cancellationToken)
-        {
-            var checkUser = repository.UserExists(request.Cpf);
-
-            if (checkUser)
-                notification.AddErrorMessage(nameof(request.Cpf), "Cpf já cadastrado");
-
-            if (notification.IsInvalid)
-            {
-                _outputPort!.InvalidRequest();
-                return;
-            }
-
-            await useCase.ExecuteAsync(request, cancellationToken);
-        }
+        await useCase.ExecuteAsync(request, cancellationToken);
     }
 }

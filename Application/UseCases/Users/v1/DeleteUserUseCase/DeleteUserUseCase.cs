@@ -2,28 +2,30 @@
 using Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions;
 using Application.UseCases.Users.v1.DeleteUserUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Users.v1.DeleteUserUseCase
+namespace Application.UseCases.Users.v1.DeleteUserUseCase;
+
+public class DeleteUserUseCase(IUserRepository repository, IUnitOfWork unitOfWork) : IDeleteUserUseCase
 {
-    public class DeleteUserUseCase(IUserRepository repository, IUnitOfWork unitOfWork) : IDeleteUserUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+    }
 
-        public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
-
-        public async Task ExecuteAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task ExecuteAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        var user = await repository.GetUser(userId, cancellationToken);
+        if (user is null)
         {
-            var user = await repository.GetUser(userId, cancellationToken);
-            if (user is null)
-            {
-                _outputPort!.UserNotFound();
-                return;
-            }
-
-            repository.DeletedUser(user);
-
-            await unitOfWork.SaveChangesAsync(cancellationToken);
-
-            _outputPort!.UserDeleted();
+            _outputPort!.UserNotFound();
+            return;
         }
+
+        repository.DeletedUser(user);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        _outputPort!.UserDeleted();
     }
 }

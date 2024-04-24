@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions
+﻿namespace Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void UserDeleted();
-        void UserNotFound();
-    }
+    void UserDeleted();
+    void UserNotFound();
 }
