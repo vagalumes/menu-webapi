@@ -1,4 +1,4 @@
-﻿using Application.UseCases.Images.v1.CreateRestaurantImageUseCase.Abstractions;
+﻿using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Images.v1.CreateRestaurantsImageUseCase

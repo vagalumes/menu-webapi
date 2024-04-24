@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
+using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
 using Application.UseCases.MenuItems.v1.UpdateMenuItemUseCase.Models;
 
 namespace Application.Shared.Entities
