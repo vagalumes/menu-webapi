@@ -2,16 +2,16 @@
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Menu_WebApi.Controllers.Images.v1.CreateMenuItemImageUseCase
+namespace Menu_WebApi.Controllers.MenuItemsImages.v1.CreateMenuItemImageUseCase
 {
-    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/menu-items/{menuItemId:guid}/upload-images")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
     public class RestaurantsController(ICreateMenuItemImage useCase) : ControllerBase, IOutputPort
     {
         private IActionResult? _viewModel;
 
-        [HttpPost]
+        [HttpPost("/{id:guid}/menu-items/{menuItemId:guid}/upload-images")]
         public async Task<IActionResult> Post(Guid id, Guid menuItemId, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);

@@ -2,7 +2,7 @@
 using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Menu_WebApi.Controllers.MenuItemsImages.v1;
+namespace Menu_WebApi.Controllers.MenuItemsImages.v1.DeleteMenuItemsImagesUseCase;
 
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiVersion("1.0")]
