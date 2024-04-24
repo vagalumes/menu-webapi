@@ -12,6 +12,8 @@
     <ItemGroup>
         <PackageReference Include="AutoFixture" Version="4.18.1" />
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.12.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="Moq" Version="4.20.70" />
         <PackageReference Include="xunit" Version="2.5.3"/>
@@ -24,6 +26,19 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Menu-WebApi\Menu-WebApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Configuration">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.3\Microsoft.Extensions.Configuration.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.Test.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

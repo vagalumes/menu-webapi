@@ -21,6 +21,6 @@ public class CreateRestaurantAddressValidator : AbstractValidator<AddressRequest
             .MinimumLength(8)
             .WithMessage("CEP deve conter no mínimo 8 dígitos.")
             .MaximumLength(8)
-            .WithMessage("CEP deve conter no máximo 8 dígitos");
+            .WithMessage("CEP deve conter no máximo 8 dígitos.");
     }
 }
