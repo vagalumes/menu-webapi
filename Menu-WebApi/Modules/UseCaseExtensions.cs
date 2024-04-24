@@ -1,7 +1,6 @@
 ﻿using Application.Shared.Notifications;
 using Application.UseCases.Images.v1.CreateMenuItemImageUseCase;
 using Application.UseCases.Images.v1.CreateRestaurantImageUseCase;
-using Application.UseCases.Images.v1.CreateUsersImageUseCase;
 using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase;
 using Application.UseCases.MenuItems.v1.GetMenuItemUseCase;
 using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase;
@@ -47,8 +46,7 @@ namespace Menu_WebApi.Modules
                 .AddUpdateMenuItemUseCase();
 
         private static IServiceCollection AddImageUseCase(this IServiceCollection services) =>
-            services.AddCreateRestaurantImageUseCase()
-                .AddCreateUserImageUseCase();
+            services.AddCreateRestaurantImageUseCase();
 
         private static IServiceCollection AddMenuItemsImageUseCase(this IServiceCollection services) =>
             services.AddCreateMenuItemsImageUseCase()

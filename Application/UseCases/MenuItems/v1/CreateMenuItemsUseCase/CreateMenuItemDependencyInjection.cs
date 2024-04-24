@@ -1,4 +1,5 @@
-﻿using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions;
+﻿using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase;
+using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions;
 using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 

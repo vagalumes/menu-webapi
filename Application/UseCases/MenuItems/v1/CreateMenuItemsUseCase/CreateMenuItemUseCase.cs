@@ -4,7 +4,7 @@ using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstr
 using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
 using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase
+namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
 {
     public class CreateMenuItemUseCase(IMenuItemRepository repository, IUnitOfWork unitOfWork) : ICreateMenuItemsUseCase
     {
