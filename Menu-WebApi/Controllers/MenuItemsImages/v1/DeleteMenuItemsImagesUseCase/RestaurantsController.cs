@@ -1,5 +1,5 @@
 ﻿using Application.Shared.Models.Errors;
-using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Abstractions;
+using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.MenuItemsImages.v1.DeleteMenuItemsImagesUseCase;
