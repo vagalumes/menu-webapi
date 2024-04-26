@@ -7,7 +7,7 @@ using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repos
 using AutoFixture;
 using Moq;
 
-namespace UnitTests.Application.Restaurants.v1;
+namespace UnitTests.Application.Restaurants.v1.Create;
 
 public class CreateRestaurantUseCaseTests
 {

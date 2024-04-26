@@ -5,7 +5,7 @@ using Menu_WebApi.Modules;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace UnitTests.Application.Restaurants.v1;
+namespace UnitTests.Application.Restaurants.v1.Create;
 
 public class CreateRestaurantDependencyInjectionTests
 {

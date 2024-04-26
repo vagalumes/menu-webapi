@@ -7,7 +7,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Moq;
 
-namespace UnitTests.Application.Restaurants.v1;
+namespace UnitTests.Application.Restaurants.v1.Create;
 
 public class CreateRestaurantValidationUseCaseTests
 {

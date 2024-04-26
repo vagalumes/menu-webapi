@@ -15,7 +15,7 @@ public class CreateRestaurantRequestValidator : AbstractValidator<CreateRestaura
             .MinimumLength(14)
             .WithMessage("O CNPJ deve conter no mínimo 14 dígitos.")
             .MaximumLength(14)
-            .WithMessage("O CNPJ deve conter no máximo 14 dígitos. ")
+            .WithMessage("O CNPJ deve conter no máximo 14 dígitos.")
             .NotEmpty()
             .WithMessage("O CNPJ do estabelecimento é um campo obrigatório.")
             .Matches("^[0-9]*$")
@@ -23,6 +23,6 @@ public class CreateRestaurantRequestValidator : AbstractValidator<CreateRestaura
 
         RuleFor(r => r.Address).SetValidator(new CreateRestaurantAddressValidator());
 
-        //RuleFor(r => r.Information).SetValidator(new CreateRestaurantInformationRequestValidator());
+        RuleFor(r => r.Information).SetValidator(new CreateRestaurantInformationRequestValidator());
     }
 }

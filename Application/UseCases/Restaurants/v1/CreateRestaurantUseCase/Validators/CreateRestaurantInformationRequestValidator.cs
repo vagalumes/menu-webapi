@@ -7,10 +7,10 @@ public class CreateRestaurantInformationRequestValidator : AbstractValidator<Inf
 {
     public CreateRestaurantInformationRequestValidator()
     {
-        RuleFor(i => i.Schedule)
+        RuleFor(i => i.Schedules)
             .NotEmpty()
             .WithMessage("É obrigatório definir um horário de funcionamento.");
 
-        RuleForEach(s => s.Schedule).SetValidator(new CreateRestaurantScheduleValidator());
+        RuleForEach(s => s.Schedules).SetValidator(new CreateRestaurantScheduleValidator());
     }
 }

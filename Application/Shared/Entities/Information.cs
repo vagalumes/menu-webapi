@@ -10,7 +10,7 @@ public class Information()
     public Information(InformationRequest informationRequest) : this()
     {
         Description = informationRequest.Description;
-        Schedules = informationRequest.Schedule.Select(x => new Schedule(x.Day, x.Start, x.End)).ToList();
+        Schedules = informationRequest.Schedules.Select(x => new Schedule(x.Day, x.Start, x.End)).ToList();
     }
 
     [Key]

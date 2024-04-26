@@ -3,7 +3,7 @@ using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Validators;
 using Bogus;
 using FluentValidation.TestHelper;
 
-namespace UnitTests.Application.Restaurants.v1.Validators;
+namespace UnitTests.Application.Restaurants.v1.Create.Validators;
 
 public class CreateRestaurantAddressValidatorTests
 {
