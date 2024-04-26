@@ -3,5 +3,5 @@
 public class UpdateInformationRequest
 {
     public string? Description { get; set; }
-    public IEnumerable<UpdateScheduleInformation> Schedule { get; set; } = [];
+    public IEnumerable<UpdateScheduleInformation> Schedules { get; set; } = [];
 }

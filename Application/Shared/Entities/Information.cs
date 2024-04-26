@@ -26,9 +26,9 @@ public class Information()
     {
         Description = information?.Description;
 
-        if (information?.Schedule is null)
+        if (information?.Schedules is null)
             return;
 
-        Schedules = information.Schedule.Select(s => new Schedule(s.Day, s.Start, s.End)).ToList();
+        Schedules = information.Schedules.Select(s => new Schedule(s.Day, s.Start, s.End)).ToList();
     }
 }

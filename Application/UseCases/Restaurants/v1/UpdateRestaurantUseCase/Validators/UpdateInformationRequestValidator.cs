@@ -14,7 +14,7 @@ public class UpdateInformationRequestValidator : AbstractValidator<UpdateInforma
                 .WithMessage("A Descrição não pode ser vazia.");
         });
 
-        When(i => i is not null && i.Schedule.Any(),
-            () => { RuleForEach(i => i.Schedule).SetValidator(new UpdateScheduleRequestValidator()); });
+        When(i => i is not null && i.Schedules.Any(),
+            () => { RuleForEach(i => i.Schedules).SetValidator(new UpdateScheduleRequestValidator()); });
     }
 }
