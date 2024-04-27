@@ -14,9 +14,5 @@ public class UpdateScheduleRequestValidator : AbstractValidator<UpdateScheduleIn
         RuleFor(s => s.Start)
             .LessThan(s => s.End)
             .WithMessage("A data de início deve ser menor que a data de fim.");
-
-        RuleFor(s => s.End)
-            .GreaterThan(s => s.Start)
-            .WithMessage("A data de fim deve ser maior que a data de início.");
     }
 }
