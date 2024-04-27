@@ -2,9 +2,9 @@
 
 namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase.Abstractions
 {
-    public interface ICreateImageUseCase
+    public interface ICreateRestaurantImageUseCase
     {
-        Task ExecuteAsync(Guid id, IEnumerable<IFormFile> files, CancellationToken cancellationToken);
+        Task ExecuteAsync(Guid id, IFormFile file, CancellationToken cancellationToken);
         void SetOutputPort(IOutputPort outputPort);
     }
 }
