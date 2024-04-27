@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
 
 public record GetRestaurantModel
 {

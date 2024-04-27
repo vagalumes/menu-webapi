@@ -1,4 +1,4 @@
-﻿namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
+﻿namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
 
 public interface IGetRestaurantUseCase
 {

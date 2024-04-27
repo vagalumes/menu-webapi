@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Services.Abstractions;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Users.v1.UpdateUserUseCase;
+namespace Application.UseCases.Users.v1.UpdateUserUsecase;
 
 public class UpdateUserUseCase(IUserRepository repository, IUnitOfWork unitOfWork) : IUpdateUserUseCase
 {

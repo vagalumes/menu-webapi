@@ -1,8 +1,8 @@
 ﻿using Application.Shared.Services.Abstractions;
 using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Abstractions;
-using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase;
+namespace Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase;
 
 public class DeleteMenuItemsImageUseCase(
     IMenuItemsImagesRepository repository,

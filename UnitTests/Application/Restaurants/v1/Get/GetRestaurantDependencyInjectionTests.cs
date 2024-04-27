@@ -1,5 +1,5 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
 using FluentAssertions;
 using Menu_WebApi.Modules;
 using Microsoft.Extensions.Configuration;

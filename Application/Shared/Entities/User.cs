@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
 
 namespace Application.Shared.Entities;
 

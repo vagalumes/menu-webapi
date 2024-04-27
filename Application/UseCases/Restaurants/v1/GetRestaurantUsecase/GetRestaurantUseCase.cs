@@ -1,8 +1,8 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories.Abstractions;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase;
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
 
 public class GetRestaurantUseCase(IRestaurantRepository repository) : IGetRestaurantUseCase
 {

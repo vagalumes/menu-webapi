@@ -1,8 +1,8 @@
-﻿using Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories.Abstractions;
+﻿using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Users.v1.UpdateUserUseCase.Services;
+namespace Application.UseCases.Users.v1.UpdateUserUsecase.Services;
 
 public static class UserServicesDependencyInjection
 {

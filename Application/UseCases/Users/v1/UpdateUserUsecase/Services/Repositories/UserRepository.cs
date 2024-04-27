@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Context;
 using Application.Shared.Entities;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.Users.v1.UpdateUserUseCase.Services.Repositories;
+namespace Application.UseCases.Users.v1.UpdateUserUsecase.Services.Repositories;
 
 public class UserRepository(AppDbContext dbContext) : IUserRepository
 {

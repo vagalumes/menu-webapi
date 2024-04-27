@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Context;
 using Application.Shared.Entities;
-using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories;
+namespace Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories;
 
 public class MenuItemsImagesRepository(AppDbContext context) : IMenuItemsImagesRepository
 {

@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Models.Request;
 
-namespace Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+namespace Application.UseCases.Users.v1.UpdateUserUsecase.Models;
 
 public class UpdateUserRequest
 {

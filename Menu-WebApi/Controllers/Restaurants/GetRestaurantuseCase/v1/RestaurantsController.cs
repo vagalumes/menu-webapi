@@ -1,9 +1,9 @@
 ﻿using Application.Shared.Models.Errors;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantUseCase.v1
+namespace Menu_WebApi.Controllers.Restaurants.GetRestaurantuseCase.v1
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
