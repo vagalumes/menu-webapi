@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase
 {
-    public static class GetMenuItemDependencyInjection
+    public static class GetMenuItemsDependencyInjection
     {
         public static IServiceCollection AddGetMenuItemUseCase(this IServiceCollection services) =>
             services.AddDependencies()
