@@ -7,6 +7,7 @@
     <InvariantGlobalization>false</InvariantGlobalization>
     <RootNamespace>Menu_WebApi</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>68d3116a-becc-46dc-bd7f-ad2f18f16f5e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
