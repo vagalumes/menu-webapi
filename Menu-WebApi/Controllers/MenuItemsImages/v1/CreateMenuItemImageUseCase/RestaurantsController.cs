@@ -11,7 +11,7 @@ namespace Menu_WebApi.Controllers.MenuItemsImages.v1.CreateMenuItemImageUseCase
     {
         private IActionResult? _viewModel;
 
-        [HttpPost("/{id:guid}/menu-items/{menuItemId:guid}/upload-images")]
+        [HttpPost("{id:guid}/menu-items/{menuItemId:guid}/upload-images")]
         public async Task<IActionResult> Post(Guid id, Guid menuItemId, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
