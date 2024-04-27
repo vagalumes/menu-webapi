@@ -1,11 +1,10 @@
 ﻿using Application.Shared.Interfaces;
 
-namespace Application.Shared.Entities
+namespace Application.Shared.Entities;
+
+public class MenuItemsImages : Image
 {
-    public class MenuItemsImages : Image
-    {
-        public Guid Id { get; set; }
-        public Guid MenuItemId { get; set; }
-        public MenuItem MenuItem { get; set; } = null!;
-    }
+    public Guid Id { get; set; }
+    public Guid MenuItemId { get; set; }
+    public MenuItem MenuItem { get; set; } = null!;
 }

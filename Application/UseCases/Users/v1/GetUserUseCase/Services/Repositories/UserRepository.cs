@@ -3,13 +3,14 @@ using Application.Shared.Entities;
 using Application.UseCases.Users.v1.GetUserUseCase.Services.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.UseCases.Users.v1.GetUserUseCase.Services.Repositories
+namespace Application.UseCases.Users.v1.GetUserUseCase.Services.Repositories;
+
+public class UserRepository(AppDbContext dbContext) : IUserRepository
 {
-    public class UserRepository(AppDbContext dbContext) : IUserRepository
+    public async Task<User?> GetUserUseCase(Guid userId, CancellationToken cancellationToken)
     {
-        public async Task<User?> GetUserUseCase(Guid userId, CancellationToken cancellationToken) =>
-               await dbContext.Users.Include(u => u.Address)
-                                   .Include(u => u.Login)
-                                   .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+        return await dbContext.Users.Include(u => u.Address)
+            .Include(u => u.Login)
+            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Abstractions
+﻿namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Abstractions;
+
+public interface IGetMenuItemUseCase
 {
-    public interface IGetMenuItemUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(Guid id, Guid menuItemId, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(Guid id, Guid menuItemId, CancellationToken cancellationToken);
 }

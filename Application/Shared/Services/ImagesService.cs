@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.Shared.Services;
+
 public class ImagesService(IHostingEnvironment hostingEnvironment) : IImagesService
 {
     public async Task<IEnumerable<FileInfo>> UploadFiles(string imagePath, IEnumerable<IFormFile> files,
@@ -10,7 +11,7 @@ public class ImagesService(IHostingEnvironment hostingEnvironment) : IImagesServ
     {
         var newFilesName = new List<FileInfo>();
         var imagesPath = Path.Combine(hostingEnvironment.WebRootPath, "images", imagePath);
-        
+
         if (!Directory.Exists(imagesPath))
             _ = Directory.CreateDirectory(imagesPath);
 
@@ -25,7 +26,7 @@ public class ImagesService(IHostingEnvironment hostingEnvironment) : IImagesServ
 
         return newFilesName;
     }
-    
+
     public void DeleteFiles(string path, string fileName)
     {
         var fullPath = Path.Combine(hostingEnvironment.WebRootPath, "images", path, fileName);

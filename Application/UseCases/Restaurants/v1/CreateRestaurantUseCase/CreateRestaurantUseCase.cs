@@ -4,36 +4,39 @@ using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
+
+public class CreateRestaurantUseCase(IRestaurantRepository repository, IUnitOfWork unitOfWork)
+    : ICreateRestaurantUseCase
 {
-    public class CreateRestaurantUseCase(IRestaurantRepository repository, IUnitOfWork unitOfWork) : ICreateRestaurantUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+    }
 
-        public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
+    public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
+    {
+        var restaurantExists = await repository.RestaurantExists(request.Cnpj);
 
-        public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
+        if (restaurantExists)
         {
-            var restaurantExists = await repository.RestaurantExists(request.Cnpj);
-
-            if(restaurantExists)
-            {
-                _outputPort!.RestaurantAlreadyExists();
-                return;
-            }
-
-            await SaveRestaurant(request, cancellationToken);
-
-            _outputPort!.RestaurantCreated();
+            _outputPort!.RestaurantAlreadyExists();
+            return;
         }
 
-        private async Task SaveRestaurant(CreateRestaurantRequest request, CancellationToken cancellationToken)
-        {
-            var restaurant = new Restaurant(request);
+        await SaveRestaurant(request, cancellationToken);
 
-            await repository.CreateRestaurant(restaurant, cancellationToken);
+        _outputPort!.RestaurantCreated();
+    }
 
-            await unitOfWork.SaveChangesAsync(cancellationToken);
-        }
+    private async Task SaveRestaurant(CreateRestaurantRequest request, CancellationToken cancellationToken)
+    {
+        var restaurant = new Restaurant(request);
+
+        await repository.CreateRestaurant(restaurant, cancellationToken);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

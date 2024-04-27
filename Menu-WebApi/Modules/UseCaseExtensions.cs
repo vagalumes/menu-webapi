@@ -3,18 +3,18 @@ using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase;
 using Application.UseCases.MenuItems.v1.DeleteMenuItemUseCase;
 using Application.UseCases.MenuItems.v1.GetMenuItemsUseCase;
 using Application.UseCases.MenuItems.v1.GetMenuItemUseCase;
-using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase;
 using Application.UseCases.MenuItems.v1.UpdateMenuItemUseCase;
 using Application.UseCases.MenuItemsImagesUseCase.v1.CreateMenuItemImageUseCase;
+using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase;
 using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase;
 using Application.UseCases.Users.v1.CreateUserUseCase;
 using Application.UseCases.Users.v1.DeleteUserUseCase;
 using Application.UseCases.Users.v1.GetUserUseCase;
-using Application.UseCases.Users.v1.UpdateUserUseCase;
+using Application.UseCases.Users.v1.UpdateUserUsecase;
 
 namespace Menu_WebApi.Modules
 {

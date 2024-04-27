@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Shared.Notifications
+namespace Application.Shared.Notifications;
+
+public static class NotificationDependencyInjection
 {
-    public static class NotificationDependencyInjection
+    public static IServiceCollection AddNotifications(this IServiceCollection services)
     {
-        public static IServiceCollection AddNotifications(this IServiceCollection services) => services.AddScoped<Notification>();
+        return services.AddScoped<Notification>();
     }
 }

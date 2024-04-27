@@ -2,10 +2,12 @@
 using Application.UseCases.Images.v1.CreateUsersImageUseCase.Services.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Services
+namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Services;
+
+public static class ImageServiceDependencyInjection
 {
-    public static class ImageServiceDependencyInjection
+    public static IServiceCollection AddImagesDependencies(this IServiceCollection services)
     {
-        public static IServiceCollection AddImagesDependencies(this IServiceCollection services) => services.AddScoped<IImageRepository, ImageRepository>();
+        return services.AddScoped<IImageRepository, ImageRepository>();
     }
 }

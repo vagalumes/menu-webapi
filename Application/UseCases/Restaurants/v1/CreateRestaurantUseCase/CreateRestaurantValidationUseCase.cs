@@ -3,31 +3,33 @@ using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 using FluentValidation;
 
-namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
+
+public class CreateRestaurantValidationUseCase(
+    ICreateRestaurantUseCase useCase,
+    IValidator<CreateRestaurantRequest> validator,
+    Notification notification) : ICreateRestaurantUseCase
 {
-    public class CreateRestaurantValidationUseCase(ICreateRestaurantUseCase useCase, IValidator<CreateRestaurantRequest> validator, Notification notification) : ICreateRestaurantUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+        useCase.SetOutputPort(outputPort);
+    }
 
-        public void SetOutputPort(IOutputPort outputPort)
+    public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
+    {
+        var result = await validator.ValidateAsync(request, cancellationToken);
+
+        notification.AddErrorMessages(result);
+
+        if (notification.IsInvalid)
         {
-            _outputPort = outputPort;
-            useCase.SetOutputPort(outputPort);
+            _outputPort!.InvalidRequest();
+            return;
         }
 
-        public async Task ExecuteAsync(CreateRestaurantRequest request, CancellationToken cancellationToken)
-        {
-            var result = await validator.ValidateAsync(request, cancellationToken);
-            
-            notification.AddErrorMessages(result);
-            
-            if (notification.IsInvalid)
-            {
-                _outputPort!.InvalidRequest();
-                return;
-            }
-
-            await useCase.ExecuteAsync(request, cancellationToken);
-        }
+        await useCase.ExecuteAsync(request, cancellationToken);
     }
 }

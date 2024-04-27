@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions
+﻿namespace Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions;
+
+public interface IDeleteUserUseCase
 {
-    public interface IDeleteUserUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(Guid userId, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(Guid userId, CancellationToken cancellationToken);
 }

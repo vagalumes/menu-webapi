@@ -1,19 +1,9 @@
 ﻿using Application.Shared.Entities;
-using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Models;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
 
 public record GetAddressModel
 {
-    public Guid Id { get; init; }
-    public string? Street { get; init; }
-    public string? Neighborhood { get; init; }
-    public string City { get; init; }
-    public string State { get; init; }
-    public string? Complement { get; init; }
-    public string ZipCode { get; init; }
-    public string? Number { get; init; }
-
     public GetAddressModel(Address address)
     {
         Id = address.Id;
@@ -25,4 +15,13 @@ public record GetAddressModel
         ZipCode = address.ZipCode;
         Number = address.Number;
     }
+
+    public Guid Id { get; init; }
+    public string? Street { get; init; }
+    public string? Neighborhood { get; init; }
+    public string City { get; init; }
+    public string State { get; init; }
+    public string? Complement { get; init; }
+    public string ZipCode { get; init; }
+    public string? Number { get; init; }
 }

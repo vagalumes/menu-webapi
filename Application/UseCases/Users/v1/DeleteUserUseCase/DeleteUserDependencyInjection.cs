@@ -3,13 +3,15 @@ using Application.UseCases.Users.v1.DeleteUserUseCase.Abstractions;
 using Application.UseCases.Users.v1.DeleteUserUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Users.v1.DeleteUserUseCase
+namespace Application.UseCases.Users.v1.DeleteUserUseCase;
+
+public static class DeleteUserDependencyInjection
 {
-    public static class DeleteUserDependencyInjection
+    public static IServiceCollection AddDeleteUserUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddDeleteUserUseCase(this IServiceCollection services) => services
-                                        .AddDependencies()
-                                        .AddNotifications()
-                                        .AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
+        return services
+            .AddDependencies()
+            .AddNotifications()
+            .AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
     }
 }

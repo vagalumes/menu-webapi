@@ -1,8 +1,7 @@
-﻿namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Abstractions
+﻿namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Abstractions;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void UserNotFound();
-        void ImageSaved();
-    }
+    void UserNotFound();
+    void ImageSaved();
 }

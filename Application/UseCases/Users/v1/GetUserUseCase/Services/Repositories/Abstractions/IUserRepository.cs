@@ -1,9 +1,8 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Users.v1.GetUserUseCase.Services.Repositories.Abstractions
+namespace Application.UseCases.Users.v1.GetUserUseCase.Services.Repositories.Abstractions;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        Task<User?> GetUserUseCase(Guid userId, CancellationToken cancellationToken);
-    }
+    Task<User?> GetUserUseCase(Guid userId, CancellationToken cancellationToken);
 }

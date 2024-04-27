@@ -3,11 +3,13 @@ using Application.UseCases.Users.v1.CreateUserUseCase.Abstractions;
 using Application.UseCases.Users.v1.CreateUserUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Users.v1.CreateUserUseCase
+namespace Application.UseCases.Users.v1.CreateUserUseCase;
+
+public static class CreateUserDependencyInjection
 {
-    public static class CreateUserDependencyInjection
+    public static IServiceCollection AddCreateUserUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddCreateUserUseCase(this IServiceCollection services) => services
+        return services
             .AddDependencies()
             .AddNotifications()
             .AddScoped<ICreateUsersUseCase, CreateUserUseCase>()

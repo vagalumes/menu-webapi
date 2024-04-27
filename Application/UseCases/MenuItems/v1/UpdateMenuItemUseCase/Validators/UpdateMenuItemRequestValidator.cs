@@ -25,7 +25,7 @@ public class UpdateMenuItemRequestValidator : AbstractValidator<UpdateMenuItemRe
         {
             RuleFor(mI => mI.Price)
                 .GreaterThan(0)
-                .WithMessage($"O valor de um prato não pode ser {(0):C}");
+                .WithMessage($"O valor de um prato não pode ser {0:C}");
         });
     }
 }
