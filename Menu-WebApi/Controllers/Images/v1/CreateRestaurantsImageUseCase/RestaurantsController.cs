@@ -3,19 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Images.v1.CreateRestaurantsImageUseCase
 {
-    [Route("api/v{version:apiVersion}/[controller]/{id:guid}/upload-images")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class RestaurantsController(ICreateImageUseCase useCase) : ControllerBase, IOutputPort
+    public class RestaurantsController(ICreateRestaurantImageUseCase useCase) : ControllerBase, IOutputPort
     {
         private IActionResult? _viewModel;
 
-        [HttpPost]
-        public async Task<IActionResult> Post(Guid id, [FromForm] IEnumerable<IFormFile> files,
-            CancellationToken cancellationToken)
+        [HttpPost("{id:guid}/upload-images")]
+        public async Task<IActionResult> Post(Guid id, IFormFile file, CancellationToken cancellationToken)
         {
             useCase.SetOutputPort(this);
-            await useCase.ExecuteAsync(id, files, cancellationToken);
+            await useCase.ExecuteAsync(id, file, cancellationToken);
 
             return _viewModel!;
         }

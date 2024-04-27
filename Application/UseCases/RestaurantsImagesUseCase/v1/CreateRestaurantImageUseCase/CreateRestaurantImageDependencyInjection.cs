@@ -4,11 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase
 {
-    public static class CreateImageDependencyInjection
+    public static class CreateRestaurantImageDependencyInjection
     {
         public static IServiceCollection AddCreateRestaurantImageUseCase(this IServiceCollection services)
         {
-            return services.AddScoped<ICreateImageUseCase, CreateRestaurantImageUseCase>()
+            return services.AddScoped<ICreateRestaurantImageUseCase, CreateRestaurantCreateRestaurantImageUseCase>()
                            .AddImageDependencies();
         }
     }

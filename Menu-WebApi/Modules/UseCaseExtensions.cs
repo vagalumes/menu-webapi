@@ -11,10 +11,6 @@ using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase;
 using Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
 using Application.UseCases.Restaurants.v1.UpdateRestaurantUseCase;
 using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase;
-using Application.UseCases.Users.v1.CreateUserUseCase;
-using Application.UseCases.Users.v1.DeleteUserUseCase;
-using Application.UseCases.Users.v1.GetUserUseCase;
-using Application.UseCases.Users.v1.UpdateUserUsecase;
 
 namespace Menu_WebApi.Modules
 {
@@ -23,7 +19,6 @@ namespace Menu_WebApi.Modules
         public static IServiceCollection AddUseCases(this IServiceCollection services, IConfiguration configuration) =>
             services.AddNotifications()
                 .AddRestaurantsUseCases()
-                .AddUsersUseCases()
                 .AddMenuItemsUseCase()
                 .AddRestaurantImageUseCase()
                 .AddMenuItemsImageUseCase();
@@ -33,12 +28,6 @@ namespace Menu_WebApi.Modules
                 .AddDeleteRestaurantUseCase()
                 .AddUpdateRestaurantUseCase()
                 .AddGetRestaurantUseCase();
-
-        private static IServiceCollection AddUsersUseCases(this IServiceCollection services) =>
-            services.AddCreateUserUseCase()
-                .AddGetUserUseCase()
-                .AddDeleteUserUseCase()
-                .AddUpdateUserUseCase();
 
         private static IServiceCollection AddMenuItemsUseCase(this IServiceCollection services) =>
             services.AddCreateMenuItemUseCase()
