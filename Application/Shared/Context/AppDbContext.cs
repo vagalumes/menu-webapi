@@ -7,13 +7,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public required DbSet<Address> Address { get; init; }
     public required DbSet<Information> Information { get; init; }
-    public required DbSet<Login> Access { get; init; }
-    public required DbSet<Payments> Payments { get; init; }
     public required DbSet<Restaurant> Restaurants { get; init; }
     public required DbSet<Schedule> Schedules { get; init; }
-    public required DbSet<User> Users { get; init; }
     public required DbSet<MenuItem> MenuItem { get; init; }
-    public required DbSet<UsersImages> UsersImages { get; init; }
     public required DbSet<RestaurantsImages> RestaurantsImages { get; init; }
     public required DbSet<MenuItemsImages> MenuItemsImages { get; init; }
 
@@ -55,16 +51,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         _ = modelBuilder.Entity<MenuItem>()
             .HasMany(m => m.Images)
             .WithOne(me => me.MenuItem)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        _ = modelBuilder.Entity<User>()
-            .HasOne(u => u.Login)
-            .WithOne(us => us.User)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        _ = modelBuilder.Entity<User>()
-            .HasMany(u => u.Images)
-            .WithOne(us => us.User)
             .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(modelBuilder);
