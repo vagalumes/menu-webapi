@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase
 {
-    public class CreateRestaurantImageUseCase(IImageRepository imageRepository, IImagesService imagesService, IUnitOfWork unitOfWork) : ICreateImageUseCase
+    public class CreateRestaurantImageUseCase(
+        IImageRepository imageRepository,
+        IImagesService imagesService,
+        IUnitOfWork unitOfWork) : ICreateImageUseCase
     {
         private IOutputPort? _outputPort;
         public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
@@ -40,6 +43,7 @@ namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImage
                 });
                 restaurant.ProfileImage = file.ToString();
             }
+
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
