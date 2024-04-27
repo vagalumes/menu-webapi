@@ -1,9 +1,8 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Services.Repositories.Abstractions
+namespace Application.UseCases.Images.v1.CreateUsersImageUseCase.Services.Repositories.Abstractions;
+
+public interface IImageRepository
 {
-    public interface IImageRepository
-    {
-        Task<User?> GetUser(Guid id, CancellationToken cancellationToken);
-    }
+    Task<User?> GetUser(Guid id, CancellationToken cancellationToken);
 }

@@ -1,7 +1,6 @@
-﻿namespace Application.Shared.Services.Abstractions
+﻿namespace Application.Shared.Services.Abstractions;
+
+public interface IUnitOfWork
 {
-    public interface IUnitOfWork
-    {
-        Task SaveChangesAsync(CancellationToken cancellationToken);
-    }
+    Task SaveChangesAsync(CancellationToken cancellationToken);
 }

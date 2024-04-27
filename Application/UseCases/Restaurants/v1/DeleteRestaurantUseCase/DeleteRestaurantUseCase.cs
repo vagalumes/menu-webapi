@@ -2,29 +2,32 @@
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Abstractions;
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase;
+
+public class DeleteRestaurantUseCase(IRestaurantRepository repository, IUnitOfWork unitOfWork)
+    : IDeleteRestaurantUseCase
 {
-    public class DeleteRestaurantUseCase(IRestaurantRepository repository, IUnitOfWork unitOfWork) : IDeleteRestaurantUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+    }
 
-        public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
+    public async Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken)
+    {
+        var restaurant = await repository.GetRestaurant(restaurantId, cancellationToken);
 
-        public async Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken)
+        if (restaurant is null)
         {
-            var restaurant = await repository.GetRestaurant(restaurantId, cancellationToken);
-
-            if (restaurant is null)
-            {
-                _outputPort!.RestaurantNotFound();
-                return;
-            }
-
-            repository.DeletedRestaurant(restaurant);
-
-            await unitOfWork.SaveChangesAsync(cancellationToken);
-
-            _outputPort!.RestaurantDeleted();
+            _outputPort!.RestaurantNotFound();
+            return;
         }
+
+        repository.DeletedRestaurant(restaurant);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        _outputPort!.RestaurantDeleted();
     }
 }

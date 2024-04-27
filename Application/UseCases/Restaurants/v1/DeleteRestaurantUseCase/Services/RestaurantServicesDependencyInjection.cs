@@ -2,11 +2,12 @@
 using Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Services.Repositories.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Services
+namespace Application.UseCases.Restaurants.v1.DeleteRestaurantUseCase.Services;
+
+public static class RestaurantServicesDependencyInjection
 {
-    public static class RestaurantServicesDependencyInjection
+    public static IServiceCollection AddDependencies(this IServiceCollection services)
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services)
-            => services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+        return services.AddScoped<IRestaurantRepository, RestaurantRepository>();
     }
 }

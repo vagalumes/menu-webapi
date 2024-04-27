@@ -6,11 +6,13 @@ using Application.UseCases.Restaurants.v1.CreateRestaurantUseCase.Validators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.CreateRestaurantUseCase;
+
+public static class CreateRestaurantDependencyInjection
 {
-    public static class CreateRestaurantDependencyInjection
+    public static IServiceCollection AddCreateRestaurantUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddCreateRestaurantUseCase(this IServiceCollection services) => services
+        return services
             .AddDependencies()
             .AddNotifications()
             .AddScoped<IValidator<CreateRestaurantRequest>, CreateRestaurantRequestValidator>()

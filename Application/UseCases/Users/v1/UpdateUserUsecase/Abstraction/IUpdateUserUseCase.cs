@@ -1,10 +1,9 @@
-﻿using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+﻿using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
 
-namespace Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction
+namespace Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
+
+public interface IUpdateUserUseCase
 {
-    public interface IUpdateUserUseCase
-    {
-        void SetOutputPort(IOutputPort outputPort);
-        Task ExecuteAsync(Guid userId, UpdateUserRequest request, CancellationToken cancellationToken);
-    }
+    void SetOutputPort(IOutputPort outputPort);
+    Task ExecuteAsync(Guid userId, UpdateUserRequest request, CancellationToken cancellationToken);
 }

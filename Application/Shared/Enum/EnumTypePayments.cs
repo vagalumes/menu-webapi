@@ -1,10 +1,9 @@
-﻿namespace Application.Shared.Enum
+﻿namespace Application.Shared.Enum;
+
+public enum EnumTypePayments
 {
-    public enum EnumTypePayments
-    {
-        Pix = 0,
-        Credit = 1,
-        Debt = 2,
-        Ticket = 3,
-    }
+    Pix = 0,
+    Credit = 1,
+    Debt = 2,
+    Ticket = 3
 }

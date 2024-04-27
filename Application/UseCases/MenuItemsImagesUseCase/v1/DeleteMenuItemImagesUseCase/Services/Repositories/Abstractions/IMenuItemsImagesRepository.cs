@@ -1,6 +1,6 @@
 ﻿using Application.Shared.Entities;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
+namespace Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
 
 public interface IMenuItemsImagesRepository
 {

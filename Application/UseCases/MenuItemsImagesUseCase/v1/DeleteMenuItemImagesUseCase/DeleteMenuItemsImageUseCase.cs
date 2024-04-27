@@ -1,8 +1,8 @@
 ﻿using Application.Shared.Services.Abstractions;
 using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Abstractions;
-using Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
+using Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.MenuItemsImageUseCase.v1.DeleteMenuItemImagesUseCase;
+namespace Application.UseCases.MenuItemsImagesUseCase.v1.DeleteMenuItemImagesUseCase;
 
 public class DeleteMenuItemsImageUseCase(
     IMenuItemsImagesRepository repository,
@@ -12,7 +12,10 @@ public class DeleteMenuItemsImageUseCase(
 {
     private IOutputPort? _outputPort;
 
-    public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
+    public void SetOutputPort(IOutputPort outputPort)
+    {
+        _outputPort = outputPort;
+    }
 
     public async Task ExecuteAsync(Guid id, Guid imageId, CancellationToken cancellationToken)
     {
@@ -33,7 +36,7 @@ public class DeleteMenuItemsImageUseCase(
         service.DeleteFiles($"menuItem-{id}", imageMenuItem.Name);
 
         repository.DeletedMenuItemImage(imageMenuItem);
-        
+
         await unitOfWork.SaveChangesAsync(cancellationToken);
         _outputPort!.MenuItemImageDeleted();
     }

@@ -1,10 +1,9 @@
 ﻿using Application.UseCases.Users.v1.GetUserUseCase.Model;
 
-namespace Application.UseCases.Users.v1.GetUserUseCase.Abstractions
+namespace Application.UseCases.Users.v1.GetUserUseCase.Abstractions;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void UserNotFound();
-        void UserFound(GetUserModel userModel);
-    }
+    void UserNotFound();
+    void UserFound(GetUserModel userModel);
 }

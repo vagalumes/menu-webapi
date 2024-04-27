@@ -1,28 +1,36 @@
-﻿using Application.Shared.Enum;
-using Application.Shared.Models.Request;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Application.Shared.Enum;
+using Application.Shared.Models.Request;
 
-namespace Application.Shared.Entities
+namespace Application.Shared.Entities;
+
+public class Payments
 {
-    public class Payments
+    public Payments(PaymentRequest request)
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-        public List<EnumTypePayments> TypePayment { get; set; } = null!;
+        TypePayment = request.TypePayments;
+    }
 
-        public Restaurant Restaurant { get; set; } = null!;
+    public Payments(PaymentRequest? request, Payments payments)
+    {
+        TypePayment = request!.TypePayments;
+    }
 
-        public Payments(PaymentRequest request) => TypePayment = request.TypePayments;
+    public Payments()
+    {
+    }
 
-        public Payments(PaymentRequest? request, Payments payments) => TypePayment = request!.TypePayments;
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid Id { get; set; }
 
-        public Payments() { }
+    public List<EnumTypePayments> TypePayment { get; set; } = null!;
 
-        internal void Update(PaymentRequest payments)
-        {
-            TypePayment = payments.TypePayments;
-        }
+    public Restaurant Restaurant { get; set; } = null!;
+
+    internal void Update(PaymentRequest payments)
+    {
+        TypePayment = payments.TypePayments;
     }
 }

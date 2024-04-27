@@ -1,13 +1,14 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
+
+public static class GetRestaurantDependencyInjection
 {
-    public static class GetRestaurantDependencyInjection
+    public static IServiceCollection AddGetRestaurantUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddGetRestaurantUseCase(this IServiceCollection services) =>
-            services.AddGetRestaurantDependencies()
-                    .AddScoped<IGetRestaurantUseCase, GetRestaurantUseCase>();
+        return services.AddGetRestaurantDependencies()
+            .AddScoped<IGetRestaurantUseCase, GetRestaurantUseCase>();
     }
 }

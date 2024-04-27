@@ -1,28 +1,30 @@
-﻿using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Abstractions;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Models;
-using Application.UseCases.Restaurants.v1.GetRestaurantUseCase.Services.Repositories.Abstractions;
+﻿using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Abstractions;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Models;
+using Application.UseCases.Restaurants.v1.GetRestaurantUsecase.Services.Repositories.Abstractions;
 
-namespace Application.UseCases.Restaurants.v1.GetRestaurantUseCase
+namespace Application.UseCases.Restaurants.v1.GetRestaurantUsecase;
+
+public class GetRestaurantUseCase(IRestaurantRepository repository) : IGetRestaurantUseCase
 {
-    public class GetRestaurantUseCase(IRestaurantRepository repository) : IGetRestaurantUseCase
+    private IOutputPort? _outputPort;
+
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        private IOutputPort? _outputPort;
+        _outputPort = outputPort;
+    }
 
-        public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
+    public async Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken)
+    {
+        var restaurant = await repository.GetRestaurant(restaurantId, cancellationToken);
 
-        public async Task ExecuteAsync(Guid restaurantId, CancellationToken cancellationToken)
+        if (restaurant is null)
         {
-            var restaurant = await repository.GetRestaurant(restaurantId, cancellationToken);
-
-            if (restaurant is null)
-            {
-                _outputPort!.RestaurantNotFound();
-                return;
-            }
-
-            var restaurantModel = new GetRestaurantModel(restaurant);
-
-            _outputPort!.RestaurantFound(restaurantModel);
+            _outputPort!.RestaurantNotFound();
+            return;
         }
+
+        var restaurantModel = new GetRestaurantModel(restaurant);
+
+        _outputPort!.RestaurantFound(restaurantModel);
     }
 }

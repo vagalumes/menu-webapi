@@ -1,7 +1,7 @@
 ﻿using Application.Shared.Models.Errors;
 using Application.Shared.Notifications;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Abstraction;
-using Application.UseCases.Users.v1.UpdateUserUseCase.Models;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Abstraction;
+using Application.UseCases.Users.v1.UpdateUserUsecase.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.Users.UpdateUserUseCase.v1

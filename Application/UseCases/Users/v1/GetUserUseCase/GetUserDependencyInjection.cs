@@ -2,12 +2,13 @@
 using Application.UseCases.Users.v1.GetUserUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.Users.v1.GetUserUseCase
+namespace Application.UseCases.Users.v1.GetUserUseCase;
+
+public static class GetUserDependencyInjection
 {
-    public static class GetUserDependencyInjection
+    public static IServiceCollection AddGetUserUseCase(this IServiceCollection services)
     {
-        public static IServiceCollection AddGetUserUseCase(this IServiceCollection services)
-            => services.AddDependencies()
-                       .AddScoped<IGetUserUseCase, GetUserUseCase>();
+        return services.AddDependencies()
+            .AddScoped<IGetUserUseCase, GetUserUseCase>();
     }
 }
