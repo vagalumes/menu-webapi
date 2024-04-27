@@ -45,14 +45,15 @@ public class CreateMenuItemValidationUseCaseTests
     [Fact]
     public async Task ExecuteAsync_When_ValidatorReturnSuccess_ShouldCall_UseCase()
     {
+        var guidId = _fixture.Create<Guid>();
         var request = _fixture.Create<CreateMenuItemsRequest>();
 
         _mockValidator.Setup(v => v.ValidateAsync(request, CancellationToken.None))
             .ReturnsAsync(new ValidationResult() { Errors = [] });
 
-        await _service.ExecuteAsync(new Guid(), request, CancellationToken.None);
+        await _service.ExecuteAsync(guidId, request, CancellationToken.None);
 
         _mockOutputPort.Verify(o => o.InvalidRequest(), Times.Never);
-        _mockUseCase.Verify(m => m.ExecuteAsync(new Guid(), request, CancellationToken.None), Times.Once);
+        _mockUseCase.Verify(m => m.ExecuteAsync(guidId, request, CancellationToken.None), Times.Once);
     }
 }
