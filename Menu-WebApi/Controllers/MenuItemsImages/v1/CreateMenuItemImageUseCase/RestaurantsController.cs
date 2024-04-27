@@ -1,5 +1,5 @@
 ﻿using Application.Shared.Models.Errors;
-using Application.UseCases.Images.v1.CreateMenuItemImageUseCase.Abstractions;
+using Application.UseCases.MenuItemsImagesUseCase.v1.CreateMenuItemImageUseCase.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.MenuItemsImages.v1.CreateMenuItemImageUseCase

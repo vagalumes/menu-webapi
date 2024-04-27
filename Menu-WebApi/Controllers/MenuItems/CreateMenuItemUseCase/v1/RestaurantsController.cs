@@ -1,8 +1,8 @@
 ﻿using Application.Shared.Entities;
 using Application.Shared.Models.Errors;
 using Application.Shared.Notifications;
-using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Abstractions;
-using Application.UseCases.MenuItemsImageUseCase.v1.CreateMenuItemsUseCase.Models;
+using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
+using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu_WebApi.Controllers.MenuItems.CreateMenuItemUseCase.v1
