@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Application.Shared.Convertes;
@@ -15,7 +16,7 @@ public class DateOnlyConverter(string? serializationFormat) : JsonConverter<Date
         Type typeToConvert, JsonSerializerOptions options)
     {
         var value = reader.GetString();
-        return DateOnly.Parse(value!);
+        return DateOnly.Parse(value!, new CultureInfo("en-US"));
     }
 
     public override void Write(Utf8JsonWriter writer, DateOnly value,
