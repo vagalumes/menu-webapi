@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase
 {
-    public class CreateRestaurantImageUseCase(IImageRepository imageRepository, IImagesService imagesService, IUnitOfWork unitOfWork) : ICreateImageUseCase
+    public class CreateRestaurantCreateRestaurantImageUseCase(IImageRepository imageRepository, IImagesService imagesService, IUnitOfWork unitOfWork)
+        : ICreateRestaurantImageUseCase
     {
         private IOutputPort? _outputPort;
         public void SetOutputPort(IOutputPort outputPort) => _outputPort = outputPort;
 
-        public async Task ExecuteAsync(Guid id, IEnumerable<IFormFile> files, CancellationToken cancellationToken)
+        public async Task ExecuteAsync(Guid id, IFormFile file, CancellationToken cancellationToken)
         {
             var restaurant = await imageRepository.GetRestaurant(id, cancellationToken);
             if (restaurant is null)
@@ -20,26 +21,22 @@ namespace Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImage
                 return;
             }
 
-            var filesInfo = await imagesService.UploadFiles($"restaurant-{id}", files, cancellationToken);
+            var fileInfo = await imagesService.UploadFile($"restaurant-{id}", file, cancellationToken);
 
-            await AddImages(restaurant, filesInfo, cancellationToken);
+            await AddImage(restaurant, fileInfo, cancellationToken);
 
             _outputPort!.ImagesSaved();
         }
 
-        private async Task AddImages(Restaurant restaurant, IEnumerable<FileInfo> fileInfos,
-            CancellationToken cancellationToken)
+        private async Task AddImage(Restaurant restaurant, FileInfo file, CancellationToken cancellationToken)
         {
-            foreach (var file in fileInfos)
+            restaurant.Images.Add(new RestaurantsImages
             {
-                restaurant.Images.Add(new RestaurantsImages
-                {
-                    Extension = file.Extension,
-                    Name = file.Name,
-                    Path = file.ToString()
-                });
-                restaurant.ProfileImage = file.ToString();
-            }
+                Extension = file.Extension,
+                Name = file.Name,
+                Path = file.ToString()
+            });
+            restaurant.ProfileImage = file.ToString();
             await unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }

@@ -9,7 +9,7 @@ public class GetMenuItemsRepository(AppDbContext context) : IMenuItemsRepository
 {
     public async Task<Restaurant?> GetRestaurant(Guid id, CancellationToken cancellationToken)
     {
-        return await context.Restaurants.FindAsync(id, cancellationToken);
+        return await context.Restaurants.FindAsync([id], cancellationToken);
     }
 
     public IEnumerable<MenuItem> GetMenuItems(Guid id)
