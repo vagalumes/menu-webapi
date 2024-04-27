@@ -18,7 +18,7 @@ public class CreateMenuItemRequestValidatorTests
         var result = await _validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(mI => mI.Name)
-            .WithErrorMessage("Nome do prato é um campo obrigatório");
+            .WithErrorMessage("O Nome do prato não pode ser nulo ou vazio.");
     }
 
     [Theory]
@@ -30,8 +30,8 @@ public class CreateMenuItemRequestValidatorTests
         var request = new CreateMenuItemsRequest { Description = description };
         var result = await _validator.TestValidateAsync(request);
 
-        result.ShouldHaveValidationErrorFor(mI => mI.Name)
-            .WithErrorMessage("Descrição do prato é um campo obrigatório");
+        result.ShouldHaveValidationErrorFor(mI => mI.Description)
+            .WithErrorMessage("Descrição do prato não pode ser nulo ou vazio.");
     }
 
     [Theory]
@@ -41,7 +41,7 @@ public class CreateMenuItemRequestValidatorTests
         var request = new CreateMenuItemsRequest { Price = price };
         var result = await _validator.TestValidateAsync(request);
 
-        result.ShouldHaveValidationErrorFor(mI => mI.Name)
-            .WithErrorMessage("Nome do prato é um campo obrigatório");
+        result.ShouldHaveValidationErrorFor(mI => mI.Price)
+            .WithErrorMessage($"O valor de um prato não pode ser {0:C}.");
     }
 }

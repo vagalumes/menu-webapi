@@ -13,10 +13,10 @@ public class CreateMenuItemsRequestValidator : AbstractValidator<CreateMenuItems
 
         RuleFor(mI => mI.Description)
             .NotEmpty()
-            .WithMessage("Descrição do prato não pode ser nulo ou vazio");
+            .WithMessage("Descrição do prato não pode ser nulo ou vazio.");
 
         RuleFor(mI => mI.Price)
             .GreaterThan(0)
-            .WithMessage($"O valor de um prato não pode ser {0:C}");
+            .WithMessage($"O valor de um prato não pode ser {0:C}.");
     }
 }
