@@ -7,7 +7,7 @@ using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services.Reposito
 using AutoFixture;
 using Moq;
 
-namespace UnitTests.Application.MenuItems.v1.Create;
+namespace UnitTests.UseCases.MenuItems.v1.Create;
 
 public class CreateMenuItemUseCaseTests
 {

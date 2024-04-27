@@ -2,7 +2,7 @@
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Validators;
 using FluentValidation.TestHelper;
 
-namespace UnitTests.Application.MenuItems.v1.Create.Validators;
+namespace UnitTests.UseCases.MenuItems.v1.Create.Validators;
 
 public class CreateMenuItemRequestValidatorTests
 {

@@ -5,7 +5,7 @@ using Menu_WebApi.Modules;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace UnitTests.Application.MenuItems.v1.Create;
+namespace UnitTests.UseCases.MenuItems.v1.Create;
 
 public class CreateMenuItemDependencyInjectionTests
 {

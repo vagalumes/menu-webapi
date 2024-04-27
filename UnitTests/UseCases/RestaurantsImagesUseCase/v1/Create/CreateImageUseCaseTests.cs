@@ -3,7 +3,6 @@ using Application.Shared.Services.Abstractions;
 using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase;
 using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase.Abstractions;
 using Application.UseCases.RestaurantsImagesUseCase.v1.CreateRestaurantImageUseCase.Services.Repositories.Abstractions;
-using AutoFixture;
 using Microsoft.AspNetCore.Http;
 using Moq;
 
@@ -15,7 +14,6 @@ public class CreateImageUseCaseTests
     private readonly Mock<IImagesService> _mockImagesService = new();
     private readonly Mock<IUnitOfWork> _mockUnitOfWork = new();
     private readonly Mock<IOutputPort> _mockOutputPort = new();
-    private readonly Fixture _fixture = new();
     private readonly CreateRestaurantCreateRestaurantImageUseCase _service;
 
     public CreateImageUseCaseTests()

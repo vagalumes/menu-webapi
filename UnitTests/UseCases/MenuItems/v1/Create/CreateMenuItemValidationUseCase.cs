@@ -7,7 +7,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Moq;
 
-namespace UnitTests.Application.MenuItems.v1.Create;
+namespace UnitTests.UseCases.MenuItems.v1.Create;
 
 public class CreateMenuItemValidationUseCaseTests
 {
