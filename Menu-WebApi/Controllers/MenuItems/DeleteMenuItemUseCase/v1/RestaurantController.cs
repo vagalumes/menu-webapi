@@ -7,7 +7,7 @@ namespace Menu_WebApi.Controllers.MenuItems.DeleteMenuItemUseCase.v1;
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiVersion("1.0")]
 [ApiController]
-public class RestaurantController(IDeleteMenuItemUseCase useCase) : ControllerBase, IOutputPort
+public class RestaurantsController(IDeleteMenuItemUseCase useCase) : ControllerBase, IOutputPort
 {
     private IActionResult? _viewModel;
 
