@@ -2,13 +2,12 @@
 using Application.UseCases.MenuItems.v1.GetMenuItemUseCase.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase;
-
-public static class GetMenuItemDependencyInjection
+namespace Application.UseCases.MenuItems.v1.GetMenuItemUseCase
 {
-    public static IServiceCollection AddGetMenuItem(this IServiceCollection services)
+    public static class GetMenuItemDependencyInjection
     {
-        return services.AddDependencies()
-            .AddScoped<IGetMenuItemUseCase, GetMenuItemUseCase>();
+        public static IServiceCollection AddGetMenuItemUseCase(this IServiceCollection services) =>
+            services.AddDependencies()
+                    .AddScoped<IGetMenuItemUseCase, GetMenuItemUseCase>();
     }
 }
