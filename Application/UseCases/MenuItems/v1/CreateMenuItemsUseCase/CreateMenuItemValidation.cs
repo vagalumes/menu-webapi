@@ -1,10 +1,15 @@
 ﻿using Application.Shared.Notifications;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
+using FluentValidation;
 
 namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
 {
-    public class CreateMenuItemValidation(ICreateMenuItemsUseCase useCase, Notification notification) : ICreateMenuItemsUseCase
+    public class CreateMenuItemValidation(
+        ICreateMenuItemsUseCase useCase,
+        IValidator<CreateMenuItemsRequest> validator,
+        Notification notification)
+        : ICreateMenuItemsUseCase
     {
         private IOutputPort? _outputPort;
 
@@ -16,8 +21,9 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
 
         public async Task ExecuteAsync(Guid id, CreateMenuItemsRequest request, CancellationToken cancellationToken)
         {
-            if (request.Price == 0)
-                notification.AddErrorMessage(nameof(request.Price), "Necessário informar o valor a ser cobrado");
+            var result = await validator.ValidateAsync(request, cancellationToken);
+
+            notification.AddErrorMessages(result);
 
             if (notification.IsInvalid)
             {

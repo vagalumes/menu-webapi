@@ -30,7 +30,7 @@ namespace Menu_WebApi.Modules
                 .AddGetRestaurantUseCase();
 
         private static IServiceCollection AddMenuItemsUseCase(this IServiceCollection services) =>
-            services.AddMenuItemUseCase()
+            services.AddCreateMenuItemUseCase()
                 .AddGetMenuItemsUseCase()
                 .AddGetMenuItemUseCase()
                 .AddUpdateMenuItemUseCase()

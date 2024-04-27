@@ -6,7 +6,7 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Services
 {
     public static class MenuItemServicesDependencyInjection
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection services) => services.AddScoped<IMenuItemRepository, MenuItemRepository>();
-
+        public static IServiceCollection AddDependencies(this IServiceCollection services) =>
+            services.AddScoped<IMenuItemRepository, MenuItemRepository>();
     }
 }
