@@ -1,5 +1,5 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl && apt-get clean
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
@@ -13,11 +13,11 @@ COPY ["Application/Application.csproj", "Application/"]
 RUN dotnet restore "Menu-WebApi/Menu-WebApi.csproj"
 COPY . .
 WORKDIR "/src/Menu-WebApi"
-RUN dotnet build "Menu-WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Menu-WebApi.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Menu-WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Menu-WebApi.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

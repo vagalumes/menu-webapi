@@ -10,9 +10,9 @@ namespace Menu_WebApi.Modules
             _ = application.UseSwagger();
             _ = application.UseSwaggerUI(o =>
             {
-                foreach (var description in provider.ApiVersionDescriptions)
+                foreach (var groupName in provider.ApiVersionDescriptions.Select(p => p.GroupName))
                 {
-                    o.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", $"Menu.Api - {description.GroupName.ToUpper()}");
+                    o.SwaggerEndpoint($"/swagger/{groupName}/swagger.json", $"Menu.Api - {groupName}");
                 }
             });
             return application;
