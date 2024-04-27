@@ -49,7 +49,7 @@ public class CreateMenuItemUseCaseTests
         await _service.ExecuteAsync(guidId, request, CancellationToken.None);
 
         _mockIOutputPort.Verify(o => o.RestaurantNotFound("Restaurante não localizado!"), Times.Never);
-        _mockIOutputPort.Verify(o => o.MenuItemsCreated(It.IsAny<MenuItem>()), Times.Once);
+        _mockIOutputPort.Verify(o => o.MenuItemsCreated(It.IsAny<MenuItemResponse>()), Times.Once);
         _mockRepository.Verify(r => r.CreateMenuItems(It.IsAny<MenuItem>(), It.IsAny<CancellationToken>()), Times.Once);
         _mockUnitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
     }

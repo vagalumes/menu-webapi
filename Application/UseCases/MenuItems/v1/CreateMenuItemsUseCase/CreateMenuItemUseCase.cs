@@ -25,12 +25,14 @@ namespace Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase
             _outputPort!.MenuItemsCreated(menuItem);
         }
 
-        private async Task<MenuItem> SaveMenuItem(CreateMenuItemsRequest request, Restaurant restaurant, CancellationToken cancellationToken)
+        private async Task<MenuItemResponse> SaveMenuItem(CreateMenuItemsRequest request, Restaurant restaurant,
+            CancellationToken cancellationToken)
         {
             var menuItem = new MenuItem(request, restaurant);
             await repository.CreateMenuItems(menuItem, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
-            return menuItem;
+            var response = new MenuItemResponse(menuItem);
+            return response;
         }
     }
 }
