@@ -1,5 +1,4 @@
-﻿using Application.Shared.Entities;
-using Application.Shared.Models.Errors;
+﻿using Application.Shared.Models.Errors;
 using Application.Shared.Notifications;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Abstractions;
 using Application.UseCases.MenuItems.v1.CreateMenuItemsUseCase.Models;
@@ -24,7 +23,7 @@ namespace Menu_WebApi.Controllers.MenuItems.CreateMenuItemUseCase.v1
 
         void IOutputPort.InvalidRequest() => _viewModel = NotFound(new ValidationError(notification, HttpContext));
 
-        void IOutputPort.MenuItemsCreated(MenuItem menuItem) => _viewModel = Created($"api/v1/menuItems/{menuItem.Id}", menuItem);
+        void IOutputPort.MenuItemsCreated(MenuItemResponse menuItem) => _viewModel = Created($"api/v1/menuItems/{menuItem.Name}", menuItem);
 
         void IOutputPort.RestaurantNotFound(string message) => _viewModel = NotFound(new NotFoundError(message, HttpContext));
     }
